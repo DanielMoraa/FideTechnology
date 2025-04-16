@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../Styles/nice-select.css">
     <link rel="stylesheet" href="../Styles/style.css">
     <link rel="stylesheet" href="../Styles/registro.css">
+    <link rel="stylesheet" href="../Styles/recuperarContra.css">
     </head>';
     }
     function PrintNavBar()

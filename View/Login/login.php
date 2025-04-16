@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-outline mb-4">
                             <input type="email"  class="form-control form-control-lg"
-                                placeholder="Correo electrónico" id="txtCorreo" name ="txtCorreo" required maxlength="45"/>
+                                placeholder="Correo electrónico" id="txtCorreo" name ="txtCorreo" value="<?php echo $correoRecordado; ?>"required maxlength="45"/>
                         </div>
                         <div class="form-outline mb-3">
                             <input type="password" class="form-control form-control-lg"
@@ -38,12 +38,12 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="form-check">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                                <label class="form-check-label" for="form2Example3">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="cbRecordar" name = "cbRecordar"  <?php echo (isset($_COOKIE["correo_recordado"])) ? "checked" : ""; ?>/>
+                                <label class="form-check-label" for="cbRecordar">
                                     Recordar
                                 </label>
                             </div>
-                            <a href="#!" class="text-body fw-bold">¿Olvidaste tu contraseña?</a>
+                            <a href="../Login/recuperarContrasenna.php" class="text-body fw-bold">¿Olvidaste tu contraseña?</a>
                         </div>
                         <?php
                                 if(isset($_POST["Message"]))

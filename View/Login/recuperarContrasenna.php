@@ -7,63 +7,59 @@
 
 <?php PrintCss();?>
 
-<body class="bg-gradient-primary">
-
-    <div class="container MargenSuperior">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-
-                        <div class="row">
-                            <div class="col-lg-3"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Recuperar Contraseña</h1>
-                                    </div>
-
-                                    <?php
-                                        if(isset($_POST["Message"]))
-                                        {
-                                            echo '<div class="alert alert-warning Mensajes">' . $_POST["Message"] . '</div>';                                   
-                                        }
-                                    ?>
-
-                                    <form action="" method="POST">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                placeholder="Correo" id="txtCorreo" name="txtCorreo" required>
-                                        </div>
-                                        <input type="submit" class="btn btn-danger btn-user btn-block" value="Procesar"
-                                            id="btnRecuperarCuenta" name="btnRecuperarCuenta">
-                                        </a>
-                                    </form>
-
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="registrarCuenta.php">Crear una Cuenta</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="login.php">Iniciar Sesión</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+<body>
+<?php PrintNavBar();?>
+<section class="login_part section_padding">
+<div class="container py-5 ">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="text-center mb-4">
+                <h2 class="mb-2">Recuperar Contraseña</h2>
+                <p class="text-muted">Siga los siguientes pasos para recuperar su contraseña.</p>
             </div>
 
+            <div class="card reset-card">
+                <div class="card-body p-4">
+
+                    <!-- Step 1: Email Verification -->
+                    <div class="step-content" id="step1">
+                        <h5 class="mb-4">Verificar Correo Electrónico</h5>
+                        <form action="" method="POST">
+                            <div class="mb-4">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control"
+                                        placeholder="Correo electrónico" id="txtCorreo" name="txtCorreo" required>
+                                </div>
+                                <div class="form-text">Le enviaremos un correo electrónico con su nueva contraseña</div>
+                            </div>
+                            <?php
+                                if(isset($_POST["ErrorCorreo"])){
+                                    echo '<div class="alert alert-danger Mensajes">' . $_POST["ErrorCorreo"] . '</div>';
+                                }?>
+                            <button type="submit" class="btn btn-primary w-100" id = "btnRecuperarContrasenna" name = "btnRecuperarContrasenna">Enviar correo</button>
+                        </form>
+                    </div>
+
+                    <!-- Success State -->
+                    <div class="step-content d-none text-center" id="success">
+                        <div class="success-checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h5 class="mb-3">Correo enviado</h5>
+                        <p class="text-muted mb-4">Su contraseña ha sido actualizada.</p>
+                        <a href="../login.php" class="btn btn-primary">Iniciar sesión</a>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-
-    <?php PrintScript(); ?>
+</div>
+</section>
+<?php PrintFooter();?>
+<?php PrintScript(); ?>
 
 </body>
 

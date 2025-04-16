@@ -9,6 +9,42 @@
     {
         $correo = $_POST["txtCorreo"];
         $contrasenna = $_POST["txtContrasenna"];
+        $recordar = isset($_POST["cbRecordar"]);
+
+        $resultado = IniciarSesionModel($correo,$contrasenna);
+
+        if($resultado != null && $resultado -> num_rows > 0)
+        {
+            $datos = mysqli_fetch_array($resultado);
+            $_SESSION["NombreUsuario"] = $datos["NombreUsuario"];
+            $_SESSION["NombrePerfil"] = $datos["NombrePerfil"];
+            $_SESSION["IdPerfil"] = $datos["IdPerfil"];
+
+            if($recordar) {
+                setcookie("correo_recordado", $correo, time() + (86400 * 30), "/"); // 86400 = 1 día
+            } else {
+                if(isset($_COOKIE["correo_recordado"])) {
+                    setcookie("correo_recordado", "", time() - 3600, "/");
+                }
+            }
+
+            header('location: ../../View/Home/home.php');
+        }
+        else
+        {
+            $_POST["Message"] = "Su información no fue validada correctamente";
+        }
+    }
+
+    $correoRecordado = "";
+    if(isset($_COOKIE["correo_recordado"])) {
+        $correoRecordado = $_COOKIE["correo_recordado"];
+    }
+
+    if(isset($_POST["cbRecordar"]))
+    {
+        $correo = $_POST["txtCorreo"];
+        $contrasenna = $_POST["txtContrasenna"];
 
         $resultado = IniciarSesionModel($correo,$contrasenna);
 
@@ -46,16 +82,74 @@
     }
 }
 
+    if (isset($_GET["token"])) {
+    $token = $_GET["token"];
 
-    function GenerarToken() {
+    $usuario = ValidarTokenModel($token); 
+    if ($datos = mysqli_fetch_array($usuario)) {
+        $idUsuario = $datos["Id"];
+
+        if (ActivarCuentaModel($idUsuario)) {
+            $_POST["Message"] = "Cuenta activada con éxito. Ahora puedes iniciar sesión.";
+        } else {
+            $_POST["Message"] = "Hubo un error al activar tu cuenta.";
+        }
+    } else {
+        $_POST["Message"] =  "No se proporcionó un token válido.";
+    }
+        }
+
+
+    function GenerarTokenCorreo() {
         return bin2hex(random_bytes(32));
+    }
+
+    function GenerarTokenContra() {
+        return bin2hex(random_bytes(3));
+    }
+
+    
+    if(isset($_POST["btnRecuperarContrasenna"]))
+    {
+        $correo = $_POST["txtCorreo"];
+
+        $resultado = ValidarUsuarioCorreoModel($correo);
+
+        if($resultado != null && $resultado -> num_rows > 0)
+        {
+            $datos = mysqli_fetch_array($resultado);
+            $codigo = GenerarTokenContra();
+
+            //Actualizar Contraseña por el código
+            $resultadoActualizacion = ActualizarContrasennaModel($datos["Id"], $codigo);
+
+            //Enviamos el correo
+            $contenido = "<html><body>
+            Estimado(a) " . $datos["NombreUsuario"] . "<br/><br/>
+            Se ha generado el siguiente código de seguridad: <b>" . $codigo . "</b><br/>
+            Recuerde realizar el cambio de contraseña una vez que ingrese al sistema. </b><br/>";
+
+            $resultadoCorreo = EnviarCorreo("Recuperar Contraseña",$contenido, $datos["Correo"]);
+        
+            if($resultadoCorreo == true)
+            {
+                header('location: ../../View/Login/login.php');
+            }
+            else
+            {
+                $_POST["Message"] = "No se pudo recuperar el acceso al sistema correctamente";
+            }
+        }
+        else{
+            $_POST["ErrorCorreo"] = "Correo no válido";
+        }
     }
     
     if(isset($_POST["btnRegistrar"])) {
         $nombre = $_POST["txtNombre"];
         $correo = $_POST["txtCorreo"];
         $contrasena = $_POST["txtContrasenna"]; 
-        $activacion = GenerarToken();
+        $activacion = GenerarTokenCorreo();
     
         try {
             // Registrar usuario sin token
