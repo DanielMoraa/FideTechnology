@@ -30,6 +30,29 @@
         <link rel="stylesheet" href="../Styles/style.css">
         </head>';   
     }
+
+    function MenuNavegacion() {
+        echo '<nav>
+                <ul>
+                    <li><a href="../Home/home.php">Inicio</a></li>
+                    <li><a href="../Productos/consultarProductos.php">Productos</a></li>
+                    <li><a href="contacto.php">Contacto</a></li>
+                </ul>
+            </nav>';
+    }
+    function BarraNavegacion() {
+        echo '<div class="barra-navegacion">
+                <nav>
+                    <ul>
+                        <li><a href="../Home/home.php">Inicio</a></li>
+                        <li><a href="../Productos/consultarProductos.php">Productos</a></li>
+                        <li><a href="contacto.php">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>';
+    }
+    
+
     function PrintNavBar()
     {
         $usuario = VerificarSesion();
@@ -91,7 +114,7 @@
                                     <nav>                                                
                                         <ul id="navigation">                                                                                                                                     
                                             <li><a href="../Home/home.php">Inicio</a></li>
-                                            <li><a href="#">Celulares</a>
+                                            <li><a href="../Productos/consultarProductos.php">Celulares</a>
                                                 <ul class="submenu">
                                                     <li><a href="#"> Samsung</a></li>
                                                     <li><a href="single-product.html"> iPhone</a></li>
