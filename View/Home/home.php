@@ -12,7 +12,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="../Img/logo/logo.png">
+                    <img src="../assets/img/logo/logo.png">
                 </div>
             </div>
         </div>
@@ -22,12 +22,12 @@
     <main>
         <div class="slider-area ">
             <div class="slider-active">
-                <div class="single-slider slider-height" data-background="../Img/hero/h1_hero.jpg">
+                <div class="single-slider slider-height" data-background="../assets/img/hero/h1_hero.jpg">
                     <div class="container">
                         <div class="row d-flex align-items-center justify-content-between">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-none d-md-block">
                                 <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                    <img src="../Img/hero/hero_man.png" alt="">
+                                    <img src="../assets/img/hero/hero_man.png" alt="">
                                 </div>
                             </div>
                             <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8">

@@ -5,4 +5,14 @@ function ConsultarProductos()
 {
     return ConsultarProductosModel();
 }
+
+function ConsultarProductosCategoria()
+{
+    return ConsultarProductosCategoriaModel();
+}
+
+function ConsultarCategorias()
+{
+    return ConsultarCategoriasModel();
+}
 ?>

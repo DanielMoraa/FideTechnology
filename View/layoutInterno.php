@@ -14,20 +14,20 @@
         <title>FideTechnology</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="manifest" href="home.php">
-		<link rel="shortcut icon" type="image/x-icon" href="../Img/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
 
-        <link rel="stylesheet" href="../Styles/bootstrap.min.css">
-        <link rel="stylesheet" href="../Styles/owl.carousel.min.css">
-        <link rel="stylesheet" href="../Styles/flaticon.css">
-        <link rel="stylesheet" href="../Styles/slicknav.css">
-        <link rel="stylesheet" href="../Styles/animate.min.css">
-        <link rel="stylesheet" href="../Styles/magnific-popup.css">
-        <link rel="stylesheet" href="../Styles/fontawesome-all.min.css">
-        <link rel="stylesheet" href="../Styles/themify-icons.css">
-        <link rel="stylesheet" href="../Styles/slick.css">
-        <link rel="stylesheet" href="../Styles/nice-select.css">
-        <link rel="stylesheet" href="../Styles/style.css">
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="../assets/css/flaticon.css">
+        <link rel="stylesheet" href="../assets/css/slicknav.css">
+        <link rel="stylesheet" href="../assets/css/animate.min.css">
+        <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="../assets/css/themify-icons.css">
+        <link rel="stylesheet" href="../assets/css/slick.css">
+        <link rel="stylesheet" href="../assets/css/nice-select.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/efectos.css">
         </head>';   
     }
     
@@ -50,7 +50,7 @@
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left d-flex">
                                     <div class="flag">
-                                        <img src="../Img/icon/header_icon.png" alt="">
+                                        <img src="../assets/img/icon/header_icon.png" alt="">
                                     </div>
                                     <div class="select-this">
                                         <form action="#">
@@ -85,7 +85,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                                 <div class="logo">
-                                  <a href="home.php"><img src="../Img/logo/logo.png"></a>
+                                  <a href="home.php"><img src="../assets/img/logo/logo.png"></a>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -193,26 +193,26 @@
 
     function PrintScript()
     {
-        echo '<script src="../Scripts/modernizr-3.5.0.min.js"></script>
-            <script src="../Scripts/jquery-1.12.4.min.js"></script>
-            <script src="../Scripts/popper.min.js"></script>
-            <script src="../Scripts/bootstrap.min.js"></script>
-            <script src="../Scripts/jquery.slicknav.min.js"></script>
-            <script src="../Scripts/owl.carousel.min.js"></script>
-            <script src="../Scripts/slick.min.js"></script>
-            <script src="../Scripts/wow.min.js"></script>
-            <script src="../Scripts/animated.headline.js"></script>
-            <script src="../Scripts/jquery.scrollUp.min.js"></script>
-            <script src="../Scripts/jquery.nice-select.min.js"></script>
-            <script src="../Scripts/jquery.sticky.js"></script>
-            <script src="../Scripts/jquery.magnific-popup.js"></script>
-            <script src="../Scripts/contact.js"></script>
-            <script src="../Scripts/jquery.form.js"></script>
-            <script src="../Scripts/jquery.validate.min.js"></script>
-            <script src="../Scripts/mail-script.js"></script>
-            <script src="../Scripts/jquery.ajaxchimp.min.js"></script>
-            <script src="../Scripts/plugins.js"></script>
-            <script src="../Scripts/main.js"></script>';
+        echo '<script src="../assets/js/modernizr-3.5.0.min.js"></script>
+            <script src="../assets/js/jquery-1.12.4.min.js"></script>
+            <script src="../assets/js/popper.min.js"></script>
+            <script src="../assets/js/bootstrap.min.js"></script>
+            <script src="../assets/js/jquery.slicknav.min.js"></script>
+            <script src="../assets/js/owl.carousel.min.js"></script>
+            <script src="../assets/js/slick.min.js"></script>
+            <script src="../assets/js/wow.min.js"></script>
+            <script src="../assets/js/animated.headline.js"></script>
+            <script src="../assets/js/jquery.scrollUp.min.js"></script>
+            <script src="../assets/js/jquery.nice-select.min.js"></script>
+            <script src="../assets/js/jquery.sticky.js"></script>
+            <script src="../assets/js/jquery.magnific-popup.js"></script>
+            <script src="../assets/js/contact.js"></script>
+            <script src="../assets/js/jquery.form.js"></script>
+            <script src="../assets/js/jquery.validate.min.js"></script>
+            <script src="../assets/js/mail-script.js"></script>
+            <script src="../assets/js/jquery.ajaxchimp.min.js"></script>
+            <script src="../assets/js/plugins.js"></script>
+            <script src="../assets/js/main.js"></script>';
     }
 
     function PrintFooter()
@@ -227,7 +227,7 @@
                         <div class="single-footer-caption mb-30">
                              <!-- logo -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="../Img/logo/logo2_footer.png" alt=""></a>
+                                <a href="index.html"><img src="../assets/img/logo/logo2_footer.png" alt=""></a>
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">
