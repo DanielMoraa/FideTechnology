@@ -10,10 +10,11 @@ $productos = ConsultarProductos();
 <?php PrintCss(); ?>
 <body>
     <div id="wrapper">
-        <?php MenuNavegacion(); ?>
+        
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <?php BarraNavegacion(); ?>
+                <?php PrintNavBar(); ?>
+                <br>
                 <div class="container-fluid">
                     <h5>Catálogo de Productos</h5>
                     <div class="row">
@@ -25,6 +26,8 @@ $productos = ConsultarProductos();
                                         <h5 class="card-title"><?= $producto['Nombre'] ?></h5>
                                         <p class="card-text">Precio: $<?= number_format($producto['Precio'], 2) ?></p>
                                         <p class="card-text">Disponibilidad: <?= $producto['Disponibilidad'] ? 'En stock' : 'Agotado' ?></p>
+                                        <p class="card-text">Descripción: <?= $producto['Descripcion'] ?></p>
+                                        <button class="btn btn-primary w-100">Agregar al carrito</button>
                                     </div>
                                 </div>
                             </div>
