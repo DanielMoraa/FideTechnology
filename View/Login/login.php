@@ -26,26 +26,15 @@
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <form action="" method="POST" class="user">
                         <div class="d-flex justify-content-center mb-4">
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-linkedin-in"></i>
-                            </button>
-                        </div>
-                        <div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0">O</p>
+                            <h1>Iniciar Sesión</h1>
                         </div>
                         <div class="form-outline mb-4">
-                            <input type="email" id="form3Example3" class="form-control form-control-lg"
-                                placeholder="Correo electrónico" />
+                            <input type="email"  class="form-control form-control-lg"
+                                placeholder="Correo electrónico" id="txtCorreo" name ="txtCorreo" required maxlength="45"/>
                         </div>
                         <div class="form-outline mb-3">
-                            <input type="password" id="form3Example4" class="form-control form-control-lg"
-                                placeholder="Contraseña" />
+                            <input type="password" class="form-control form-control-lg"
+                                placeholder="Contraseña" id="txtContrasenna" name ="txtContrasenna" required maxlength="15"/>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="form-check">
@@ -56,6 +45,12 @@
                             </div>
                             <a href="#!" class="text-body fw-bold">¿Olvidaste tu contraseña?</a>
                         </div>
+                        <?php
+                                if(isset($_POST["Message"]))
+                                {
+                                    echo '<div class="alert alert-danger Mensajes">' . $_POST["Message"] . '</div>';                                   
+                                }
+                            ?>
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit" class="btn btn-primary btn-lg"
                                 style="padding-left: 2.5rem; padding-right: 2.5rem;" id="btnIniciarSesion"

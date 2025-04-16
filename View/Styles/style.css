@@ -13063,4 +13063,103 @@ height: 100%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.Mensajes
+{
+    text-align:center;
+    font-size: 11pt;
+}
+
+.text-body {
+    color: #3B82F6 !important;
+    transition: color 0.2s;
+}
+
+.text-body:hover {
+    color: #1E40AF !important;
+    text-decoration: underline;
+}
+
+/* Estilo para el contenedor principal */
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.login-title {
+  color: #1E3A8A;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.login-title:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #3B82F6, #1E40AF);
+  border-radius: 2px;
+}
+
+.form-control {
+  border: 1px solid #E5E7EB;
+  padding: 12px 15px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #3B82F6, #1E40AF);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #2563EB, #1E3A8A);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.text-body {
+  color: #3B82F6 !important;
+  transition: color 0.2s;
+}
+
+.text-body:hover {
+  color: #1E40AF !important;
+  text-decoration: underline;
+}
+
+.AlineacionOpciones
+{
+    margin-right: 18px !important;
+}
+
+.AlineacionOpcionesSalir{
+    margin-left: 4px;
+    background-color:transparent;
+    border-color:transparent;
+}
+
 /*# sourceMappingURL=style.css.map */

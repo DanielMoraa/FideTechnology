@@ -79,7 +79,7 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="home.php">Inicio</a></li>
+                                            <li><a href="../Home/home.php">Inicio</a></li>
                                             <li><a href="#">Celulares</a>
                                                 <ul class="submenu">
                                                     <li><a href="#"> Samsung</a></li>

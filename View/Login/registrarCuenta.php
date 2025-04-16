@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-outline mb-3">
                                 <input type="password" class="form-control form-control-lg" placeholder="Contraseña"
-                                    id="txtContrasenna" name="txtContrasenna" />
+                                    id="txtContrasenna" name="txtContrasenna">
                             </div>
                             <div class="text-center text-lg-start mt-4 pt-2">
                                 <button type="submit" class="btn btn-primary btn-lg w-100" id="btnRegistrar"
@@ -36,11 +36,10 @@
                                     Registrar
                                 </button>
                                 <?php
-        
-        if(isset($_POST["Exito"]))
-        {
-            echo '<div class="text-primary" style="margin-top:15px>' . $_POST["Exito"] . '</div>';                                   
-        }?>
+                                if(isset($_POST["Exito"])){
+                                    echo '<div class="text-primary" style="margin-top:15px">' . $_POST["Exito"] . '</div>';
+                                }?>
+                            </div>
                         </form>
                     </div>
                 </div>

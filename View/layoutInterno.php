@@ -5,6 +5,7 @@
         session_start();
     }
 
+
     function PrintCss()
     {
         echo '<head>
@@ -31,6 +32,13 @@
     }
     function PrintNavBar()
     {
+        $usuario = VerificarSesion();
+
+        $nombrePerfil = "";
+        if(isset($_SESSION["NombrePerfil"]))
+        {
+            $nombrePerfil = $_SESSION["NombrePerfil"];
+        }
         echo '    <header>
        <div class="header-area">
             <div class="main-header ">
@@ -82,7 +90,7 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>                                                
                                         <ul id="navigation">                                                                                                                                     
-                                            <li><a href="home.php">Inicio</a></li>
+                                            <li><a href="../Home/home.php">Inicio</a></li>
                                             <li><a href="#">Celulares</a>
                                                 <ul class="submenu">
                                                     <li><a href="#"> Samsung</a></li>
@@ -113,37 +121,72 @@
                                 </div>
                             </div> 
                             <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card">
-                                <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
-                                    <li class="d-none d-xl-block">
-                                        <div class="form-box f-right ">
-                                            <input type="text" name="Search" placeholder="Buscar productos">
-                                            <div class="search-icon">
-                                                <i class="fas fa-search special-tag"></i>
-                                            </div>
-                                        </div>
-                                     </li>
-                                    <li class=" d-none d-xl-block">
-                                        <div class="favorit-items">
-                                            <i class="far fa-heart"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="shopping-card">
-                                            <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </li>
-                                   <li class="d-none d-lg-block"> <a href="login.php" class="btn header-btn">Iniciar sesión</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
-                            </div>
-                        </div>
-                    </div>
-               </div>
+    <ul class="header-right f-right d-none d-lg-flex align-items-center justify-content-between">
+        <!-- Barra de búsqueda -->
+        <li class="d-none d-xl-block ">
+            <div class="form-box f-right">
+                <input type="text" name="Search" placeholder="Buscar productos">
+                <div class="search-icon">
+                    <i class="fas fa-search special-tag"></i>
+                </div>
             </div>
-       </div>
-    </header>';
+        </li>
+
+        <!-- Favoritos -->
+        <li class="d-none d-xl-block ml-3">
+            <div class="favorit-items">
+                <i class="far fa-heart"></i>
+            </div>
+        </li>
+
+        <!-- Carrito -->
+        <li class="ml-3">
+            <div class="shopping-card">
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </li>';
+
+                                    if ($usuario) {
+                                        echo '<li class="nav-item dropdown no-arrow ml-3">
+                                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
+                                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="mr-2 d-none d-lg-inline text-gray-600" style="color: black">' . htmlspecialchars($usuario) . '</span>
+                                                    <img class="img-profile rounded-circle" src="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" height = "50px" width = "50px">
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                                     aria-labelledby="userDropdown">
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 AlineacionOpciones"></i>
+                                                        Perfil
+                                                    </a>
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400 AlineacionOpciones"></i>
+                                                        Seguridad
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+                                                        <form method="POST" action="../../Controller/LoginController.php">
+                                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                                                            <input class="AlineacionOpcionesSalir" id="btnSalir" name="btnSalir" type="submit" value="Salir">
+                                                        </form>
+                                                    </a>
+                                                </div>
+                                              </li>';
+                                    } else {
+                                        echo '<li class="d-none d-lg-block"> <a href="../Login/login.php" class="btn header-btn">Iniciar sesión</a></li>';
+                                    }
+                                
+                                    echo '                  </ul>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="mobile_menu d-block d-lg-none"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                               </div>
+                                            </div>
+                                       </div>
+                                    </header>';
     }
 
     function PrintScript()

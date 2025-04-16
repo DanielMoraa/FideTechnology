@@ -5,31 +5,12 @@
         session_start();
     }
 
-    if(isset($_POST["btnRegistrarCuenta"]))
+    if(isset($_POST["btnIniciarSesion"]))
     {
-        $identificacion = $_POST["txtIdentificacion"];
-        $nombre = $_POST["txtNombre"];
         $correo = $_POST["txtCorreo"];
         $contrasenna = $_POST["txtContrasenna"];
 
-        $resultado = RegistrarCuentaModel($identificacion,$nombre,$correo,$contrasenna);
-
-        if($resultado == true)
-        {
-            header('location: ../../View/Login/login.php');
-        }
-        else
-        {
-            $_POST["Message"] = "Su información no fue registrada correctamente";
-        }
-    }
-
-    if(isset($_POST["btnIniciarSesion"]))
-    {
-        $identificacion = $_POST["txtIdentificacion"];
-        $contrasenna = $_POST["txtContrasenna"];
-
-        $resultado = IniciarSesionModel($identificacion,$contrasenna);
+        $resultado = IniciarSesionModel($correo,$contrasenna);
 
         if($resultado != null && $resultado -> num_rows > 0)
         {
@@ -38,7 +19,7 @@
             $_SESSION["NombrePerfil"] = $datos["NombrePerfil"];
             $_SESSION["IdPerfil"] = $datos["IdPerfil"];
 
-            header('location: ../../View/Login/home.php');
+            header('location: ../../View/Home/home.php');
         }
         else
         {
@@ -49,8 +30,21 @@
     if(isset($_POST["btnSalir"]))
     {
         session_destroy();
-        header('location: ../../View/Login/login.php');
+        header('location: ../View/Login/login.php');
     }
+
+    function VerificarSesion()
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (isset($_SESSION["NombreUsuario"])) {
+        return $_SESSION["NombreUsuario"];
+    } else {
+        return null;
+    }
+}
 
 
     function GenerarToken() {
@@ -120,8 +114,8 @@
         require 'PHPMailer/src/PHPMailer.php';
         require 'PHPMailer/src/SMTP.php';
     
-        $correoSalida = "dirección outlook de la U";
-        $contrasennaSalida = "contraseña";
+        $correoSalida = "dmora00668@ufide.ac.cr";
+        $contrasennaSalida = "ZT3J_86WK";
     
         $mail = new PHPMailer();
         $mail->CharSet = 'UTF-8';
