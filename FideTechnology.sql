@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE `categoria` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(50) NOT NULL,
+  `Imagen` varchar(450) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +38,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (1,'Celulares'),(2,'Tablets'),(3,'Accesorios');
+INSERT INTO `categoria` VALUES (1,'Celulares','https://www.adntienda.com/web/image/332163/celulares-costa-rica.jpg?access_token=41e727ca-d9b8-4cc4-a6cd-16ad1092bc59'),(2,'Tablets','https://static.independent.co.uk/2024/11/01/16/best-tablets-1-november-2024.jpg?width=1200&height=900&fit=crop'),(3,'Accesorios','https://www.muvit.es/img/cms/1%20-%20Blog/Conjunto%20de%20accesorios%20blancos.jpeg');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,6 +132,83 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'fidetechnology'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `Buscar_Productos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Buscar_Productos`(IN keyword VARCHAR(100), IN categoria_id INT)
+BEGIN
+    DECLARE base_query TEXT;
+    DECLARE final_query TEXT;
+
+    -- Armar base de la consulta
+    SET base_query = '
+        SELECT 
+            p.Id AS IdProducto,
+            p.Nombre AS NombreProducto,
+            p.Descripcion,
+            p.Precio,
+            p.Imagen,
+            p.Disponibilidad,
+            c.Id AS IdCategoria,
+            c.Nombre AS NombreCategoria
+        FROM productos p
+        LEFT JOIN categoria c ON p.idCategoria = c.Id
+        WHERE (LOWER(p.Nombre) LIKE CONCAT("%", LOWER(?), "%")
+            OR LOWER(p.Descripcion) LIKE CONCAT("%", LOWER(?), "%"))';
+
+    -- Si se especifica una categoría válida, agregar filtro
+    IF categoria_id IS NOT NULL AND categoria_id > 0 THEN
+        SET base_query = CONCAT(base_query, ' AND p.idCategoria = ?');
+    END IF;
+
+    -- Preparar y ejecutar la consulta
+    SET @query = base_query;
+    PREPARE stmt FROM @query;
+
+    IF categoria_id IS NOT NULL AND categoria_id > 0 THEN
+        SET @kw1 = keyword;
+        SET @kw2 = keyword;
+        SET @cat = categoria_id;
+        EXECUTE stmt USING @kw1, @kw2, @cat;
+    ELSE
+        SET @kw1 = keyword;
+        SET @kw2 = keyword;
+        EXECUTE stmt USING @kw1, @kw2;
+    END IF;
+
+    DEALLOCATE PREPARE stmt;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Consultar_Categorias` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Consultar_Categorias`()
+BEGIN
+    SELECT Id, Nombre, Imagen FROM categoria ORDER BY Nombre ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `Consultar_Productos_Por_Categoria` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -141,40 +219,43 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Consultar_Productos_Por_Categoria`(
-    IN p_idCategoria INT -- Parámetro para filtrar por ID de categoría, si es 0 trae todos los productos
-)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Consultar_Productos_Por_Categoria`(IN categoria_id INT)
 BEGIN
-    IF p_idCategoria = 0 THEN
-        -- Si el parámetro es 0, mostrar todos los productos
-        SELECT 
-            p.id AS IdProducto,
-            p.Nombre AS NombreProducto,
-            p.Descripcion,
-            p.Precio,
-            p.Imagen,
-            p.Disponibilidad,
-            p.idCategoria,
-            c.Nombre AS NombreCategoria
-        FROM productos p
-        INNER JOIN categoria c ON p.idCategoria = c.id
-        ORDER BY p.id DESC;
+    IF categoria_id IS NULL OR categoria_id = 0 THEN
+        CALL Consultar_Productos_Todos();
     ELSE
-        -- Filtrar productos por la categoría especificada
-        SELECT 
-            p.id AS IdProducto,
-            p.Nombre AS NombreProducto,
-            p.Descripcion,
-            p.Precio,
-            p.Imagen,
-            p.Disponibilidad,
-            p.idCategoria,
-            c.Nombre AS NombreCategoria
-        FROM productos p
-        INNER JOIN categoria c ON p.idCategoria = c.id
-        WHERE p.idCategoria = p_idCategoria
-        ORDER BY p.id DESC;
+        SELECT p.Id as IdProducto, p.Nombre as NombreProducto, 
+               p.Descripcion, p.Precio, p.Imagen, p.Disponibilidad, 
+               c.Id as IdCategoria, c.Nombre as NombreCategoria 
+        FROM productos p 
+        LEFT JOIN categoria c ON p.idCategoria = c.Id
+        WHERE p.idCategoria = categoria_id
+        ORDER BY p.Id DESC;
     END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Consultar_Productos_Todos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Consultar_Productos_Todos`()
+BEGIN
+    SELECT p.Id as IdProducto, p.Nombre as NombreProducto, 
+           p.Descripcion, p.Precio, p.Imagen, p.Disponibilidad, 
+           c.Id as IdCategoria, c.Nombre as NombreCategoria 
+    FROM productos p 
+    LEFT JOIN categoria c ON p.idCategoria = c.Id
+    ORDER BY p.Id DESC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -430,4 +511,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-16  7:04:56
+-- Dump completed on 2025-04-18  3:41:20

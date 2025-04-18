@@ -1,6 +1,7 @@
 <?php
     include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Controller/LoginController.php";
-
+    include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Controller/ProductosController.php";
+    $categoria_id = isset($_GET['categoria']) ? intval($_GET['categoria']) : 0;
     if(session_status() == PHP_SESSION_NONE){
         session_start();
     }
@@ -27,6 +28,7 @@
         <link rel="stylesheet" href="../assets/css/slick.css">
         <link rel="stylesheet" href="../assets/css/nice-select.css">
         <link rel="stylesheet" href="../assets/css/style.css">
+         <link rel="stylesheet" href="../assets/css/inicio.css">
         <link rel="stylesheet" href="../assets/css/efectos.css">
         </head>';   
     }
@@ -41,7 +43,7 @@
         {
             $nombrePerfil = $_SESSION["NombrePerfil"];
         }
-        echo '    <header>
+        echo '<header>
        <div class="header-area">
             <div class="main-header ">
                 <div class="header-top top-bg d-none d-lg-block">
@@ -85,7 +87,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                                 <div class="logo">
-                                  <a href="home.php"><img src="../assets/img/logo/logo.png"></a>
+                                  <a href="../Home/home.php"><img src="../assets/img/logo/logo.png"></a>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -93,28 +95,28 @@
                                     <nav>                                                
                                         <ul id="navigation">                                                                                                                                     
                                             <li><a href="../Home/home.php">Inicio</a></li>
-                                            <li><a href="../Productos/consultarProductos.php">Celulares</a>
+                                            <li><a href="../Productos/consultarProductos.php?keyword=&categoria=1">Celulares</a>
                                                 <ul class="submenu">
-                                                    <li><a href="#"> Samsung</a></li>
-                                                    <li><a href="single-product.html"> iPhone</a></li>
-                                                    <li><a href="#"> Xiaomi</a></li>
-                                                    <li><a href="#"> Honor</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Samsung&categoria=1"> Samsung</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Iphone&categoria=1"> iPhone</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Xiaomi&categoria=1"> Xiaomi</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Honor&categoria=1"> Honor</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="blog.html">Tablets</a>
+                                            <li><a href="../Productos/consultarProductos.php?keyword=&categoria=2">Tablets</a>
                                                 <ul class="submenu">
-                                                    <li><a href="#">iPad</a></li>
-                                                    <li><a href="#">Samsung</a></li>
-                                                    <li><a href="#">Amazon</a></li>
-                                                    <li><a href="#">Lenovo</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=iPad&categoria=2">iPad</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Samsung&categoria=2">Samsung</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Amazon&categoria=2">Amazon</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Lenovo&categoria=2">Lenovo</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Accesorios</a>
+                                            <li><a href="../Productos/consultarProductos.php?keyword=&categoria=3">Accesorios</a>
                                                 <ul class="submenu">
-                                                    <li><a href="#">Cargadores</a></li>
-                                                    <li><a href="#">Covers</a></li>
-                                                    <li><a href="#">Audífonos</a></li>
-                                                    <li><a href="#">Otros</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Cargador&categoria=3">Cargadores</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Cover&categoria=3">Covers</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Audifonos&categoria=3">Audífonos</a></li>
+                                                    <li><a href="../Productos/consultarProductos.php?keyword=Otros&categoria=3">Otros</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="contacto.php">Contacto</a></li>
@@ -124,15 +126,18 @@
                             </div> 
                             <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card">
     <ul class="header-right f-right d-none d-lg-flex align-items-center justify-content-between">
-        <!-- Barra de búsqueda -->
-        <li class="d-none d-xl-block ">
-            <div class="form-box f-right">
-                <input type="text" name="Search" placeholder="Buscar productos">
-                <div class="search-icon">
-                    <i class="fas fa-search special-tag"></i>
-                </div>
-            </div>
-        </li>
+                                     <!-- Barra de búsqueda -->
+                                    <li class="d-none d-xl-block">
+                                        <div class="form-box f-right">
+                                            <form action="../Productos/consultarProductos.php" method="GET" id="searchForm">
+                                                <input type="text" class="ft_search_input" name="keyword" 
+                                                       placeholder="Buscar productos..." 
+                                                       value="' . (isset($keyword) ? htmlspecialchars($keyword) : '') . '">' .
+                                                (isset($categoria_id) && $categoria_id > 0 ? 
+                                                '<input type="hidden" name="categoria" value="' . $categoria_id . '">' : '') . '
+                                            </form>
+                                        </div>
+                                    </li>
 
         <!-- Favoritos -->
         <li class="d-none d-xl-block ml-3">
@@ -212,7 +217,8 @@
             <script src="../assets/js/mail-script.js"></script>
             <script src="../assets/js/jquery.ajaxchimp.min.js"></script>
             <script src="../assets/js/plugins.js"></script>
-            <script src="../assets/js/main.js"></script>';
+            <script src="../assets/js/main.js"></script>
+            <script src="../assets/js/productos.js"></script>';
     }
 
     function PrintFooter()

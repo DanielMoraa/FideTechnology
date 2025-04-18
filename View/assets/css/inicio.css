@@ -1,0 +1,294 @@
+/* Estilos generales */
+.fmr-body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+.fmr-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.fmr-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fmr-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+}
+
+/* Preloader */
+.fmr-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fmr-preloader-inner {
+    text-align: center;
+}
+
+.fmr-preloader-circle {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #2563eb;
+    border-radius: 50%;
+    animation: fmr-spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes fmr-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hero Section */
+.fmr-hero {
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.fmr-hero-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.fmr-hero-text {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.fmr-hero-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.fmr-hero-image img {
+    max-width: 100%;
+    height: auto;
+    animation: fmr-float 3s ease-in-out infinite;
+}
+
+@keyframes fmr-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.fmr-discount-badge {
+    display: inline-block;
+    background: #ef4444;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    animation: fmr-pulse 2s infinite;
+}
+
+@keyframes fmr-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.fmr-hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 10px 0;
+    color: #1e293b;
+    line-height: 1.2;
+}
+
+.fmr-hero-subtitle {
+    font-size: 1.2rem;
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+/* Product Categories */
+.fmr-categories {
+    padding: 60px 0;
+    background: white;
+}
+
+.fmr-section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.fmr-section-title h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    position: relative;
+    display: inline-block;
+}
+
+.fmr-section-title h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #2563eb;
+    border-radius: 2px;
+}
+
+.fmr-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 0 20px;
+}
+
+/* Tarjetas de categoría mejoradas (con imágenes y enlaces) */
+.fmr-category-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    position: relative;
+    height: 100%;
+}
+
+.fmr-category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.fmr-category-image {
+    height: 180px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fmr-category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.fmr-category-card:hover .fmr-category-image img {
+    transform: scale(1.05);
+}
+
+.fmr-category-name {
+    padding: 20px 15px;
+    text-align: center;
+    background: white;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1e293b;
+    transition: color 0.3s ease;
+}
+
+.fmr-category-card:hover .fmr-category-name {
+    color: #2563eb;
+}
+
+/* Efecto overlay al hacer hover */
+.fmr-category-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(37, 99, 235, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+}
+
+.fmr-category-card:hover::after {
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .fmr-hero-content {
+        flex-direction: column;
+    }
+    
+    .fmr-hero-text, .fmr-hero-image {
+        text-align: center;
+    }
+    
+    .fmr-hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .fmr-category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    
+    .fmr-category-image {
+        height: 150px;
+    }
+    
+    .fmr-category-name {
+        font-size: 1.1rem;
+        padding: 15px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fmr-category-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .fmr-hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .fmr-section-title h2 {
+        font-size: 2rem;
+    }
+}
