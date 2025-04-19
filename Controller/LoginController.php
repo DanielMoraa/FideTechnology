@@ -16,6 +16,8 @@
         if($resultado != null && $resultado -> num_rows > 0)
         {
             $datos = mysqli_fetch_array($resultado);
+            $_SESSION["IdUsuario"] = $datos["Id"];
+            $_SESSION["CorreoUsuario"] = $datos["Correo"];
             $_SESSION["NombreUsuario"] = $datos["NombreUsuario"];
             $_SESSION["NombrePerfil"] = $datos["NombrePerfil"];
             $_SESSION["IdPerfil"] = $datos["IdPerfil"];
@@ -236,3 +238,4 @@
     
     
 ?>
+

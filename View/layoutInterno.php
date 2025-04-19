@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="header-info-right">
                                    <ul>                                          
-                                       <li><a href="login.html">Mi cuenta </a></li>
+                                       <li><a href="../Usuario/actualizarDatos.php">Mi cuenta </a></li>
                                        <li><a href="product_list.html">Lista de Deseos</a></li>
                                        <li><a href="cart.html">Carrito</a></li>
                                        <li><a href="checkout.html">Checkout</a></li>
@@ -220,6 +220,15 @@
             <script src="../assets/js/main.js"></script>
             <script src="../assets/js/productos.js"></script>';
     }
+    function MenuNavegacion()
+    {
+    
+    }
+    function BarraNavegacion()
+    {
+        
+    }
+
 
     function PrintFooter()
     {
