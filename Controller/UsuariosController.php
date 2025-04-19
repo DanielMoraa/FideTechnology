@@ -32,6 +32,9 @@
         return mysqli_fetch_array($resultado);
     }
 
+    function ActualizarProducto($id, $nombre, $descripcion, $precio, $imagen, $disponibilidad) {
+        return ActualizarProductoModel($id, $nombre, $descripcion, $precio, $imagen, $disponibilidad);
+    }
     
 
 ?>

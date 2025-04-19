@@ -60,8 +60,6 @@
                                                 <select name="select" id="select1">
                                                     <option value="">USA</option>
                                                     <option value="">SPN</option>
-                                                    <option value="">CDA</option>
-                                                    <option value="">USD</option>
                                                 </select>
                                             </div>
                                         </form>

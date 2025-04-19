@@ -82,4 +82,51 @@ function ObtenerNombreCategoriaModel($categoria_id) {
         return "Todas las categorías";
     }
 }
+
+
+function AgregarProductoModel($nombre, $descripcion, $precio, $imagen, $disponibilidad, $idCategoria) {
+    try {
+        $context = AbrirBaseDatos();
+        $stmt = $context->prepare("CALL Agregar_Producto(?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssdsii", $nombre, $descripcion, $precio, $imagen, $disponibilidad, $idCategoria);
+        $stmt->execute();
+        $stmt->close();
+        CerrarBaseDatos($context);
+        return true;
+    } catch (Exception $error) {
+        return false;
+    }
+}
+
+function ActualizarProductoModel($id, $nombre, $descripcion, $precio, $imagen, $disponibilidad) {
+    try {
+        $context = AbrirBaseDatos();
+        $stmt = $context->prepare("CALL Actualizar_Producto(?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("issdsi", $id, $nombre, $descripcion, $precio, $imagen, $disponibilidad);
+        $stmt->execute();
+        $stmt->close();
+        CerrarBaseDatos($context);
+        return true;
+    } catch (Exception $error) {
+        return false;
+    }
+}
+
+
+function ObtenerProductoPorIdModel($id) {
+    try {
+        $context = AbrirBaseDatos();
+        $stmt = $context->prepare("SELECT * FROM productos WHERE Id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $producto = $resultado->fetch_assoc();
+        $stmt->close();
+        CerrarBaseDatos($context);
+        return $producto;
+    } catch (Exception $error) {
+        return null;
+    }
+}
+
 ?>

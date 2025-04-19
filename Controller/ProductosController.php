@@ -37,4 +37,30 @@ function ProcesarSolicitudProductos() {
     
     return $productos;
 }
+
+function AgregarProducto($nombre, $descripcion, $precio, $imagen, $disponibilidad, $idCategoria) {
+    return AgregarProductoModel($nombre, $descripcion, $precio, $imagen, $disponibilidad, $idCategoria);
+}
+
+function ObtenerProductoPorId($id) {
+    return ObtenerProductoPorIdModel($id);
+}
+
+
+function ActualizarProducto($id, $nombre, $descripcion, $precio, $imagen, $disponibilidad) {
+    include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Model/BaseDatosModel.php";
+    $conn = AbrirBaseDatos(); 
+
+    $stmt = $conn->prepare("UPDATE productos SET Nombre = ?, Descripcion = ?, Precio = ?, Imagen = ?, Disponibilidad = ? WHERE Id = ?");
+    $stmt->bind_param("ssdssi", $nombre, $descripcion, $precio, $imagen, $disponibilidad, $id);
+
+    $resultado = $stmt->execute();
+    $stmt->close();
+    CerrarBaseDatos($conn);
+
+    return $resultado;
+}
+
+
+
 ?>
