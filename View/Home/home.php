@@ -1,4 +1,6 @@
 <?php
+session_start();
+var_dump($_SESSION);
         include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Controller/ProductosController.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/View/layoutInterno.php";
         $categoria_id = isset($_GET['categoria']) ? intval($_GET['categoria']) : 0;
@@ -83,9 +85,9 @@ if(!empty($categorias_array)) {
     <!-- Sección de productos -->
     <section class="product_list section_padding">
         <div class="container">
-            <div class="fmr-section-title">
-                <h2>Productos</h2>
-            </div>
+        <div class="fmr-section-title">
+                 <h2>Productos</h2>
+             </div>
             
             <!-- Filtros -->
             <div class="ft_filters_container">

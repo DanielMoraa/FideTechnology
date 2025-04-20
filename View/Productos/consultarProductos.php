@@ -1,6 +1,8 @@
 <?php
+session_start(); // Asegúrate de que esto esté al inicio
 include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Controller/ProductosController.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/View/layoutInterno.php";
+
 $categoria_id = isset($_GET['categoria']) ? intval($_GET['categoria']) : 0;
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 
@@ -8,7 +10,6 @@ $categorias = ConsultarCategorias();
 $productos = ProcesarSolicitudProductos();
 
 $nombre_categoria_actual = ObtenerNombreCategoria($categoria_id);
-
 $tiene_resultados = ($productos && $productos->num_rows > 0);
 ?>
 
@@ -22,7 +23,10 @@ $tiene_resultados = ($productos && $productos->num_rows > 0);
         <div class="fmr-section-title">
             <h2>Productos</h2>
         </div>
-        <a href="agregarProducto.php" class="btn btn-success mb-3">Agregar Producto</a>
+
+        <?php if (isset($_SESSION["IdPerfil"]) && in_array($_SESSION["IdPerfil"], [2, 3])): ?>
+            <a href="agregarProducto.php" class="btn btn-success mb-3">Agregar Producto</a>
+        <?php endif; ?>
 
         <!-- Filtros -->
         <div class="ft_filters_container">
@@ -77,7 +81,10 @@ $tiene_resultados = ($productos && $productos->num_rows > 0);
                                 <?php else: ?>
                                     <span class="ft_badge ft_out_stock">Agotado</span>
                                 <?php endif; ?>
-                                <a href="/FideTechnology/View/Productos/actualizarProducto.php?id=<?= $producto['IdProducto'] ?>" class="btn btn-warning mt-2 btn-sm">Actualizar</a>
+
+                                <?php if (isset($_SESSION["IdPerfil"]) && in_array($_SESSION["IdPerfil"], [2, 3])): ?>
+                                    <a href="/FideTechnology/View/Productos/actualizarProducto.php?id=<?= $producto['IdProducto'] ?>" class="btn btn-warning mt-2 btn-sm">Actualizar</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
