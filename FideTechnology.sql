@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `fidetechnology` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `fidetechnology`;
--- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: fidetechnology
 -- ------------------------------------------------------
@@ -84,7 +84,7 @@ CREATE TABLE `productos` (
   PRIMARY KEY (`Id`),
   KEY `FK_CategoriaProducto_idx` (`IdCategoria`),
   CONSTRAINT `FK_CategoriaProducto` FOREIGN KEY (`IdCategoria`) REFERENCES `categoria` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Samsung Galaxy S22','Telefono con Lapiz',999.99,'https://www.cqnetcr.com/114602-thickbox_default/celular-samsung-galaxy-s22-ultra-amoled-2x-blanco.jpg',1,1),(2,'iPhone 13','Bordes de Titanio',1099.99,'https://www.tiendaamiga.com.bo/media/catalog/product/cache/deb88dadd509903c96aaa309d3e790dc/e/0/e06641-iphone-13-bolivia.jpg',1,1),(3,'Xiaomi Mi 11','Gama Media',799.99,'https://cyberteamcr.com/wp-content/uploads/2024/11/17201_12930.jpg',1,1),(4,'Honor 50','Gama Media',799.99,'https://www.elgallomasgallo.com.gt/media/catalog/product/c/e/celular-4g-honor-x6a-plus-purpura-128gb-190444_3_.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700',0,1),(5,'iPhone 16 Plus','Bordes de Titanio',900.99,'https://phonesstorekenya.com/wp-content/uploads/2024/02/Apple-iPhone-16-Plus.jpg',1,1),(6,'Samsung Flip 3','Telefono Plegable',1200.99,'https://phlexxgadgets.co.ke/wp-content/uploads/2024/08/Samsung-Galaxy-Z-Flip-3-Price-in-Kenya-003-Mobilehub-Kenya.jpg',0,1),(7,'Tablet Samsung A7','Tablet Samsung',1350.25,'https://extremetechcr.com/tienda/36959/samsung-galaxy-tab-a7-lite-gray-wifi-32gb-sm-t220.jpg',1,2);
+INSERT INTO `productos` VALUES (1,'Samsung Galaxy S22','Telefono con Lapiz',999.99,'https://www.cqnetcr.com/114602-thickbox_default/celular-samsung-galaxy-s22-ultra-amoled-2x-blanco.jpg',1,1),(2,'iPhone 13','Bordes de Titanio',1099.99,'https://www.tiendaamiga.com.bo/media/catalog/product/cache/deb88dadd509903c96aaa309d3e790dc/e/0/e06641-iphone-13-bolivia.jpg',1,1),(3,'Xiaomi Mi 11','Gama Media',799.99,'https://cyberteamcr.com/wp-content/uploads/2024/11/17201_12930.jpg',1,1),(4,'Honor 50','Gama Media',799.99,'https://www.elgallomasgallo.com.gt/media/catalog/product/c/e/celular-4g-honor-x6a-plus-purpura-128gb-190444_3_.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700',0,1),(5,'iPhone 16 Plus','Bordes de Titanio',900.99,'https://phonesstorekenya.com/wp-content/uploads/2024/02/Apple-iPhone-16-Plus.jpg',1,1),(6,'Samsung Flip 3','Telefono Plegable',1200.99,'https://phlexxgadgets.co.ke/wp-content/uploads/2024/08/Samsung-Galaxy-Z-Flip-3-Price-in-Kenya-003-Mobilehub-Kenya.jpg',0,1),(7,'Tablet Samsung A7','Tablet Samsung',1350.20,'https://extremetechcr.com/tienda/36959/samsung-galaxy-tab-a7-lite-gray-wifi-32gb-sm-t220.jpg',1,2),(8,'Iphone X','Iphone antiguo con buena camara',499.99,'https://www.plug.tech/cdn/shop/products/s-l1600_15_acecb274-eb20-460a-9028-9f4eb98e8f30.jpg?v=1624125323&%3Bwidth=800&em-format=auto',1,1),(9,'Cargador para Iphone','Cargador para Iphone 20w',20.00,'https://siman.vtexassets.com/arquivos/ids/1303078-800-800?v=637547208852570000&width=800&height=800&aspect=true',1,3);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `usuario` (
   UNIQUE KEY `Uk_Activacion` (`Activacion`),
   KEY `FK_UsuarioPerfil` (`IdPerfil`),
   CONSTRAINT `FK_UsuarioPerfil` FOREIGN KEY (`IdPerfil`) REFERENCES `perfil` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,13 +125,77 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Fernando Chacón Zuñiga','chaconzunigafernando@gmail.com','F1603','fb82a4c3b232b84935c216819702636d8a6b94dfef59f9342b90e422274689d4',1);
+INSERT INTO `usuario` VALUES (1,'Fernando Chacón Zuñiga','chaconzunigafernando@gmail.com','F1603','fb82a4c3b232b84935c216819702636d8a6b94dfef59f9342b90e422274689d4',1),(2,'Javier Perez Rivera','Javi123@gmail.com','Javi123','c55455d500392d9eb09bc3677ad938d947f09d2317733226a9837db0aae66f26',1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'fidetechnology'
+--
+
+--
 -- Dumping routines for database 'fidetechnology'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `Actualizar_Producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Actualizar_Producto`(
+    IN p_Id INT,
+    IN p_Nombre VARCHAR(255),
+    IN p_Descripcion VARCHAR(255),
+    IN p_Precio DECIMAL(10,2),
+    IN p_Imagen VARCHAR(255),
+    IN p_Disponibilidad TINYINT(1)
+)
+BEGIN
+    UPDATE productos
+    SET 
+        Nombre = p_Nombre,
+        Descripcion = p_Descripcion,
+        Precio = p_Precio,
+        Imagen = p_Imagen,
+        Disponibilidad = p_Disponibilidad
+    WHERE Id = p_Id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Agregar_Producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Agregar_Producto`(
+    IN p_Nombre VARCHAR(255),
+    IN p_Descripcion VARCHAR(255),
+    IN p_Precio DECIMAL(10,2),
+    IN p_Imagen VARCHAR(255),
+    IN p_Disponibilidad TINYINT(1),
+    IN p_IdCategoria BIGINT
+)
+BEGIN
+    INSERT INTO productos (Nombre, Descripcion, Precio, Imagen, Disponibilidad, IdCategoria)
+    VALUES (p_Nombre, p_Descripcion, p_Precio, p_Imagen, p_Disponibilidad, p_IdCategoria);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `Buscar_Productos` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -568,4 +632,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-18 22:40:27
+-- Dump completed on 2025-04-20  9:02:33
