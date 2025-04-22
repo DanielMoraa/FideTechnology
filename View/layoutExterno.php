@@ -77,28 +77,28 @@
                                     <nav>                                                
                                         <ul id="navigation">                                                                                                                                     
                                             <li><a href="../Home/home.php">Inicio</a></li>
-                                            <li><a href="../Productos/consultarProductos.php?keyword=&categoria=1">Celulares</a>
+                                            <li><a href="../Productos/consultarProducto.php?categoria=1">Celulares</a>
                                                 <ul class="submenu">
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Samsung&categoria=1"> Samsung</a></li>
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Iphone&categoria=1"> iPhone</a></li>
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Xiaomi&categoria=1"> Xiaomi</a></li>
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Honor&categoria=1"> Honor</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Samsung&categoria=1"> Samsung</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Iphone&categoria=1"> iPhone</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Xiaomi&categoria=1"> Xiaomi</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Honor&categoria=1"> Honor</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="../Productos/consultarProductos.php?keyword=&categoria=2">Tablets</a>
+                                            <li><a href="../Productos/consultarProducto.php?categoria=2">Tablets</a>
                                                 <ul class="submenu">
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=iPad&categoria=2">iPad</a></li>
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Samsung&categoria=2">Samsung</a></li>
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Amazon&categoria=2">Amazon</a></li>
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Lenovo&categoria=2">Lenovo</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=iPad&categoria=2">iPad</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Samsung&categoria=2">Samsung</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Amazon&categoria=2">Amazon</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Lenovo&categoria=2">Lenovo</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="#">Accesorios</a>
                                                 <ul class="submenu">
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Cargadorcategoria=3">Cargadores</a></li>
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Covercategoria=3">Covers</a></li>
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Audifonoscategoria=3">Audífonos</a></li>
-                                                    <li><a href="../Productos/consultarProductos.php?keyword=Otroscategoria=3">Otros</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Cargadorcategoria=3">Cargadores</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Covercategoria=3">Covers</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Audifonoscategoria=3">Audífonos</a></li>
+                                                    <li><a href="../Productos/consultarProducto.php?keyword=Otroscategoria=3">Otros</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="contacto.php">Contacto</a></li>

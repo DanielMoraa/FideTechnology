@@ -9,6 +9,14 @@ function ConsultarProductosTodos() {
     return ConsultarProductosTodosModel();
 }
 
+function ConsultarProductoPorId($id) {
+    return ObtenerProductoPorIdModel($id);
+}
+
+function ObtenerColoresProducto($idProducto) {
+    return ObtenerColoresProductoModel($idProducto);
+}
+
 function ConsultarProductosPorCategoria($categoria_id) {
     if ($categoria_id === null || $categoria_id === 0) {
         return ConsultarProductosTodosModel();
@@ -38,16 +46,38 @@ function ProcesarSolicitudProductos() {
     return $productos;
 }
 
-function AgregarProducto($nombre, $descripcion, $precio, $imagen, $disponibilidad, $idCategoria) {
-    return AgregarProductoModel($nombre, $descripcion, $precio, $imagen, $disponibilidad, $idCategoria);
-}
 
 function ObtenerProductoPorId($id) {
     return ObtenerProductoPorIdModel($id);
 }
 
 
-function ActualizarProducto($id, $nombre, $descripcion, $precio, $imagen, $disponibilidad) {
+if(isset($_POST["btnCrearProducto"]))
+{
+    $nombre = $_POST["txtNombre"];
+    $descripcion = $_POST["txtDescripcion"];
+    $precio = $_POST["txtPrecio"];
+    $imagen = '../assets/img/img_subidas/' . $_FILES["txtImagen"]["name"];
+    $disponibilidad = $_POST["txtDisponibilidad"];
+    $categoria = $_POST["txtCategoria"];
+    $origen = $_FILES["txtImagen"]["tmp_name"];
+    $destino = $_SERVER["DOCUMENT_ROOT"] . '/FideTechnology/View/assets/img/img_subidas/' . $_FILES["txtImagen"]["name"];
+    copy($origen,$destino);
+
+    $resultado = AgregarProductoModel($nombre, $descripcion, $precio, $imagen, $disponibilidad, $categoria);
+
+    if($resultado == true)
+    {
+        header('location: ../../View/Home/home.php');
+    }
+    else
+    {
+        $_POST["Message"] = "El producto no fue registrado correctamente";
+    }
+}
+
+
+function ActualizarProductos($id, $nombre, $descripcion, $precio, $imagen, $disponibilidad) {
     include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Model/BaseDatosModel.php";
     $conn = AbrirBaseDatos(); 
 
@@ -60,7 +90,6 @@ function ActualizarProducto($id, $nombre, $descripcion, $precio, $imagen, $dispo
 
     return $resultado;
 }
-
 
 
 ?>

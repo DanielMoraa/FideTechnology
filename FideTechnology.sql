@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `fidetechnology` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `fidetechnology`;
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: fidetechnology
 -- ------------------------------------------------------
@@ -16,6 +16,38 @@ USE `fidetechnology`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `carrito`
+--
+
+DROP TABLE IF EXISTS `carrito`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `carrito` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `IdUsuario` bigint(20) NOT NULL,
+  `IdProducto` int(11) NOT NULL,
+  `Color` varchar(50) DEFAULT NULL,
+  `Cantidad` int(11) DEFAULT 1,
+  `FechaAgregado` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`Id`),
+  KEY `IdUsuario` (`IdUsuario`),
+  KEY `IdProducto` (`IdProducto`),
+  CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`Id`),
+  CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `carrito`
+--
+
+LOCK TABLES `carrito` WRITE;
+/*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
+INSERT INTO `carrito` VALUES (6,1,1,'Rojo',1,'2025-04-21 07:50:01');
+/*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `categoria`
@@ -67,6 +99,34 @@ INSERT INTO `perfil` VALUES (1,'Cliente(a)'),(2,'Administrador(a)'),(3,'Vendedor
 UNLOCK TABLES;
 
 --
+-- Table structure for table `producto_colores`
+--
+
+DROP TABLE IF EXISTS `producto_colores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `producto_colores` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `IdProducto` int(11) DEFAULT NULL,
+  `Color` varchar(50) DEFAULT NULL,
+  `Imagen` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `IdProducto` (`IdProducto`),
+  CONSTRAINT `producto_colores_ibfk_1` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `producto_colores`
+--
+
+LOCK TABLES `producto_colores` WRITE;
+/*!40000 ALTER TABLE `producto_colores` DISABLE KEYS */;
+INSERT INTO `producto_colores` VALUES (1,1,'Rojo','../assets/img/img_subidas/s22red.png'),(2,1,'Verde','../assets/img/img_subidas/s22green.png'),(3,1,'Negro','../assets/img/img_subidas/s22black.png'),(4,2,'Negro','../assets/img/img_subidas/iphone13black.png'),(5,8,'Blanco','../assets/img/img_subidas/promax16blanco.png');
+/*!40000 ALTER TABLE `producto_colores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `productos`
 --
 
@@ -84,7 +144,7 @@ CREATE TABLE `productos` (
   PRIMARY KEY (`Id`),
   KEY `FK_CategoriaProducto_idx` (`IdCategoria`),
   CONSTRAINT `FK_CategoriaProducto` FOREIGN KEY (`IdCategoria`) REFERENCES `categoria` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +153,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Samsung Galaxy S22','Telefono con Lapiz',999.99,'https://www.cqnetcr.com/114602-thickbox_default/celular-samsung-galaxy-s22-ultra-amoled-2x-blanco.jpg',1,1),(2,'iPhone 13','Bordes de Titanio',1099.99,'https://www.tiendaamiga.com.bo/media/catalog/product/cache/deb88dadd509903c96aaa309d3e790dc/e/0/e06641-iphone-13-bolivia.jpg',1,1),(3,'Xiaomi Mi 11','Gama Media',799.99,'https://cyberteamcr.com/wp-content/uploads/2024/11/17201_12930.jpg',1,1),(4,'Honor 50','Gama Media',799.99,'https://www.elgallomasgallo.com.gt/media/catalog/product/c/e/celular-4g-honor-x6a-plus-purpura-128gb-190444_3_.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700',0,1),(5,'iPhone 16 Plus','Bordes de Titanio',900.99,'https://phonesstorekenya.com/wp-content/uploads/2024/02/Apple-iPhone-16-Plus.jpg',1,1),(6,'Samsung Flip 3','Telefono Plegable',1200.99,'https://phlexxgadgets.co.ke/wp-content/uploads/2024/08/Samsung-Galaxy-Z-Flip-3-Price-in-Kenya-003-Mobilehub-Kenya.jpg',0,1),(7,'Tablet Samsung A7','Tablet Samsung',1350.20,'https://extremetechcr.com/tienda/36959/samsung-galaxy-tab-a7-lite-gray-wifi-32gb-sm-t220.jpg',1,2),(8,'Iphone X','Iphone antiguo con buena camara',499.99,'https://www.plug.tech/cdn/shop/products/s-l1600_15_acecb274-eb20-460a-9028-9f4eb98e8f30.jpg?v=1624125323&%3Bwidth=800&em-format=auto',1,1),(9,'Cargador para Iphone','Cargador para Iphone 20w',20.00,'https://siman.vtexassets.com/arquivos/ids/1303078-800-800?v=637547208852570000&width=800&height=800&aspect=true',1,3);
+INSERT INTO `productos` VALUES (1,'Samsung Galaxy S22','Telefono con Lapiz',999.99,'../assets/img/img_subidas/248911_0_xxhhxs.png',1,1),(2,'iPhone 13','Bordes de Titanio',1099.99,'../assets/img/img_subidas/apple-iphone-13-128gb-medianoche-.jpg',1,1),(3,'Xiaomi Mi 11','Gama Media',799.99,'../assets/img/img_subidas/imagen-principal17607-1-1618002938.png',1,1),(4,'Honor 50','Gama Media',799.99,'../assets/img/img_subidas/honor_50_listimg_parameter_silver-v1.png',0,1),(5,'iPhone 16 Plus','Bordes de Titanio',900.99,'../assets/img/img_subidas/233679-233684-233689-iphone-16-plus-ultramarine.png',1,1),(6,'Samsung Flip 3','Telefono Plegable',1200.99,'../assets/img/img_subidas/hncq4kchi5yktooxfmyx.png',0,1),(7,'Tablet Samsung A7','Tablet Samsung',1350.25,'../assets/img/img_subidas/SamsungA7.png',1,2),(8,'iPhone 16 PRO MAX','Gama alta',1000.00,'../assets/img/img_subidas/apple-iphone-16-pro-max.png',1,1);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,207 +185,13 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Fernando Chacón Zuñiga','chaconzunigafernando@gmail.com','F1603','fb82a4c3b232b84935c216819702636d8a6b94dfef59f9342b90e422274689d4',1),(2,'Javier Perez Rivera','Javi123@gmail.com','Javi123','c55455d500392d9eb09bc3677ad938d947f09d2317733226a9837db0aae66f26',1);
+INSERT INTO `usuario` VALUES (1,'Fernando Chacón Zuñiga','chaconzunigafernando@gmail.com','F1603','fb82a4c3b232b84935c216819702636d8a6b94dfef59f9342b90e422274689d4',3),(2,'Daniel Mora Solano','dmora00668@ufide.ac.cr','123',NULL,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'fidetechnology'
---
-
---
 -- Dumping routines for database 'fidetechnology'
 --
-/*!50003 DROP PROCEDURE IF EXISTS `Actualizar_Producto` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Actualizar_Producto`(
-    IN p_Id INT,
-    IN p_Nombre VARCHAR(255),
-    IN p_Descripcion VARCHAR(255),
-    IN p_Precio DECIMAL(10,2),
-    IN p_Imagen VARCHAR(255),
-    IN p_Disponibilidad TINYINT(1)
-)
-BEGIN
-    UPDATE productos
-    SET 
-        Nombre = p_Nombre,
-        Descripcion = p_Descripcion,
-        Precio = p_Precio,
-        Imagen = p_Imagen,
-        Disponibilidad = p_Disponibilidad
-    WHERE Id = p_Id;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Agregar_Producto` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Agregar_Producto`(
-    IN p_Nombre VARCHAR(255),
-    IN p_Descripcion VARCHAR(255),
-    IN p_Precio DECIMAL(10,2),
-    IN p_Imagen VARCHAR(255),
-    IN p_Disponibilidad TINYINT(1),
-    IN p_IdCategoria BIGINT
-)
-BEGIN
-    INSERT INTO productos (Nombre, Descripcion, Precio, Imagen, Disponibilidad, IdCategoria)
-    VALUES (p_Nombre, p_Descripcion, p_Precio, p_Imagen, p_Disponibilidad, p_IdCategoria);
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Buscar_Productos` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Buscar_Productos`(IN keyword VARCHAR(100), IN categoria_id INT)
-BEGIN
-    DECLARE base_query TEXT;
-    DECLARE final_query TEXT;
-
-    -- Armar base de la consulta
-    SET base_query = '
-        SELECT 
-            p.Id AS IdProducto,
-            p.Nombre AS NombreProducto,
-            p.Descripcion,
-            p.Precio,
-            p.Imagen,
-            p.Disponibilidad,
-            c.Id AS IdCategoria,
-            c.Nombre AS NombreCategoria
-        FROM productos p
-        LEFT JOIN categoria c ON p.idCategoria = c.Id
-        WHERE (LOWER(p.Nombre) LIKE CONCAT("%", LOWER(?), "%")
-            OR LOWER(p.Descripcion) LIKE CONCAT("%", LOWER(?), "%"))';
-
-    -- Si se especifica una categoría válida, agregar filtro
-    IF categoria_id IS NOT NULL AND categoria_id > 0 THEN
-        SET base_query = CONCAT(base_query, ' AND p.idCategoria = ?');
-    END IF;
-
-    -- Preparar y ejecutar la consulta
-    SET @query = base_query;
-    PREPARE stmt FROM @query;
-
-    IF categoria_id IS NOT NULL AND categoria_id > 0 THEN
-        SET @kw1 = keyword;
-        SET @kw2 = keyword;
-        SET @cat = categoria_id;
-        EXECUTE stmt USING @kw1, @kw2, @cat;
-    ELSE
-        SET @kw1 = keyword;
-        SET @kw2 = keyword;
-        EXECUTE stmt USING @kw1, @kw2;
-    END IF;
-
-    DEALLOCATE PREPARE stmt;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Consultar_Categorias` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Consultar_Categorias`()
-BEGIN
-    SELECT Id, Nombre, Imagen FROM categoria ORDER BY Nombre ASC;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Consultar_Productos_Por_Categoria` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Consultar_Productos_Por_Categoria`(IN categoria_id INT)
-BEGIN
-    IF categoria_id IS NULL OR categoria_id = 0 THEN
-        CALL Consultar_Productos_Todos();
-    ELSE
-        SELECT p.Id as IdProducto, p.Nombre as NombreProducto, 
-               p.Descripcion, p.Precio, p.Imagen, p.Disponibilidad, 
-               c.Id as IdCategoria, c.Nombre as NombreCategoria 
-        FROM productos p 
-        LEFT JOIN categoria c ON p.idCategoria = c.Id
-        WHERE p.idCategoria = categoria_id
-        ORDER BY p.Id DESC;
-    END IF;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Consultar_Productos_Todos` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Consultar_Productos_Todos`()
-BEGIN
-    SELECT p.Id as IdProducto, p.Nombre as NombreProducto, 
-           p.Descripcion, p.Precio, p.Imagen, p.Disponibilidad, 
-           c.Id as IdCategoria, c.Nombre as NombreCategoria 
-    FROM productos p 
-    LEFT JOIN categoria c ON p.idCategoria = c.Id
-    ORDER BY p.Id DESC;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ActivarCuenta` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -403,6 +269,268 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Actualizar_Cantidad_Carrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Actualizar_Cantidad_Carrito`(
+    IN p_IdUsuario INT,
+    IN p_IdProducto INT,
+    IN p_Color VARCHAR(50),
+    IN p_Cantidad INT
+)
+BEGIN
+    DECLARE v_existe INT DEFAULT 0;
+    DECLARE v_actual_cantidad INT DEFAULT 0;
+    DECLARE v_total INT DEFAULT 0;
+    
+    -- Verificar si el producto existe en el carrito del usuario
+    SELECT COUNT(*), IFNULL(Cantidad, 0) INTO v_existe, v_actual_cantidad
+    FROM carrito
+    WHERE IdUsuario = p_IdUsuario 
+      AND IdProducto = p_IdProducto
+      AND Color = p_Color;
+      
+    IF v_existe > 0 THEN
+        -- Actualizar la cantidad si existe
+        UPDATE carrito 
+        SET Cantidad = p_Cantidad,
+            FechaActualizado = NOW()
+        WHERE IdUsuario = p_IdUsuario 
+          AND IdProducto = p_IdProducto
+          AND Color = p_Color;
+          
+        -- Obtener el total de items en el carrito para este usuario
+        SELECT SUM(Cantidad) INTO v_total
+        FROM carrito
+        WHERE IdUsuario = p_IdUsuario;
+        
+        -- Retornar éxito, mensaje, la cantidad actualizada y el total
+        SELECT 
+            1 AS success,
+            'Cantidad actualizada correctamente' AS message,
+            p_Cantidad AS cantidad,
+            v_total AS total;
+    ELSE
+        -- Si no existe, devolver error
+        SELECT 
+            0 AS success,
+            'Producto no encontrado en el carrito' AS message,
+            0 AS cantidad,
+            0 AS total;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Actualizar_Producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Actualizar_Producto`(
+    IN P_ID bigint(20),
+    IN P_NOMBRE varchar(255),
+    IN P_DESCRIPCION varchar(255),
+    IN P_PRECIO DECIMAL(10,2),
+    IN P_IMAGEN VARCHAR(255),
+    IN P_DISPONIBILIDAD tinyint(1),
+    IN P_IDCATEGORIA bigint(20)
+)
+BEGIN
+    UPDATE productos
+    SET
+        Nombre = P_NOMBRE,
+        Descripcion = P_DESCRIPCION,
+        Precio = P_PRECIO,
+        Imagen = P_IMAGEN,
+        Disponibilidad = P_DISPONIBILIDAD,
+        IdCategoria = P_IDCATEGORIA
+    WHERE Id = P_ID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Agregar_Al_Carrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Agregar_Al_Carrito`(
+    IN p_IdUsuario INT,
+    IN p_IdProducto INT,
+    IN p_Color VARCHAR(50),
+    IN p_Cantidad INT
+)
+BEGIN
+    DECLARE existe INT;
+    DECLARE disponible TINYINT;
+    DECLARE max_cantidad INT DEFAULT 10;
+
+    -- Verificar si el producto ya está en el carrito
+    SELECT COUNT(*) INTO existe 
+    FROM Carrito 
+    WHERE IdUsuario = p_IdUsuario 
+    AND IdProducto = p_IdProducto 
+    AND Color = p_Color;
+
+    -- Verificar si el producto está disponible
+    SELECT Disponibilidad INTO disponible
+    FROM Productos 
+    WHERE Id = p_IdProducto;
+
+    IF disponible = 0 THEN
+        SELECT 0 AS total, 'Producto sin disponibilidad' AS Mensaje;
+    ELSE
+        -- Si ya existe, actualizar cantidad (sin exceder máximo)
+        IF existe > 0 THEN
+            UPDATE Carrito 
+            SET Cantidad = LEAST(
+                (SELECT Cantidad FROM Carrito 
+                 WHERE IdUsuario = p_IdUsuario 
+                 AND IdProducto = p_IdProducto 
+                 AND Color = p_Color) + p_Cantidad,
+                max_cantidad
+            )
+            WHERE IdUsuario = p_IdUsuario 
+            AND IdProducto = p_IdProducto 
+            AND Color = p_Color;
+
+            SELECT 'Producto actualizado en el carrito' AS Mensaje;
+        ELSE
+            -- Si no existe, agregar nuevo (validando cantidad)
+            INSERT INTO Carrito (IdUsuario, IdProducto, Color, Cantidad)
+            VALUES (p_IdUsuario, p_IdProducto, p_Color, LEAST(p_Cantidad, max_cantidad));
+
+            SELECT 'Producto agregado al carrito' AS Mensaje;
+        END IF;
+
+        -- Devolver conteo actualizado de productos en el carrito
+        SELECT COUNT(*) AS total FROM Carrito WHERE IdUsuario = p_IdUsuario;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Agregar_Producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Agregar_Producto`(
+    IN P_NOMBRE varchar(255),
+    IN P_DESCRIPCION varchar(255),
+    IN P_PRECIO DECIMAL(10,2),
+    IN P_IMAGEN VARCHAR(255),
+    IN P_DISPONIBILIDAD tinyint(1),
+    IN P_IDCATEGORIA bigint(20)
+)
+BEGIN
+    INSERT INTO productos (
+        Nombre,
+        Descripcion,
+        Precio,
+        Imagen,
+        Disponibilidad,
+        IdCategoria
+    ) VALUES (
+        P_NOMBRE,
+        P_DESCRIPCION,
+        P_PRECIO,
+        P_IMAGEN,
+        P_DISPONIBILIDAD,
+        P_IDCATEGORIA
+    );
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Buscar_Productos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Buscar_Productos`(IN keyword VARCHAR(100), IN categoria_id INT)
+BEGIN
+    DECLARE base_query TEXT;
+    DECLARE final_query TEXT;
+
+    -- Armar base de la consulta
+    SET base_query = '
+        SELECT 
+            p.Id AS IdProducto,
+            p.Nombre AS NombreProducto,
+            p.Descripcion,
+            p.Precio,
+            p.Imagen,
+            p.Disponibilidad,
+            c.Id AS IdCategoria,
+            c.Nombre AS NombreCategoria
+        FROM productos p
+        LEFT JOIN categoria c ON p.idCategoria = c.Id
+        WHERE (LOWER(p.Nombre) LIKE CONCAT("%", LOWER(?), "%")
+            OR LOWER(p.Descripcion) LIKE CONCAT("%", LOWER(?), "%"))';
+
+    IF categoria_id IS NOT NULL AND categoria_id > 0 THEN
+        SET base_query = CONCAT(base_query, ' AND p.idCategoria = ?');
+    END IF;
+
+    -- Preparar y ejecutar la consulta
+    SET @query = base_query;
+    PREPARE stmt FROM @query;
+
+    IF categoria_id IS NOT NULL AND categoria_id > 0 THEN
+        SET @kw1 = keyword;
+        SET @kw2 = keyword;
+        SET @cat = categoria_id;
+        EXECUTE stmt USING @kw1, @kw2, @cat;
+    ELSE
+        SET @kw1 = keyword;
+        SET @kw2 = keyword;
+        EXECUTE stmt USING @kw1, @kw2;
+    END IF;
+
+    DEALLOCATE PREPARE stmt;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ConsultarProductos` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -458,6 +586,159 @@ BEGIN
     INNER JOIN perfil P ON U.IdPerfil = P.Id 
 	WHERE 	U.Id = pId;
 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Consultar_Categorias` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Consultar_Categorias`()
+BEGIN
+    SELECT Id, Nombre, Imagen FROM categoria ORDER BY Nombre ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Consultar_Colores_Por_Producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Consultar_Colores_Por_Producto`(IN p_IdProducto INT)
+BEGIN
+    SELECT 
+        Color, 
+        Imagen 
+    FROM 
+        producto_colores
+    WHERE 
+        IdProducto = p_IdProducto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Consultar_Productos_Por_Categoria` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Consultar_Productos_Por_Categoria`(IN categoria_id INT)
+BEGIN
+    IF categoria_id IS NULL OR categoria_id = 0 THEN
+        CALL Consultar_Productos_Todos();
+    ELSE
+        SELECT p.Id as IdProducto, p.Nombre as NombreProducto, 
+               p.Descripcion, p.Precio, p.Imagen, p.Disponibilidad, 
+               c.Id as IdCategoria, c.Nombre as NombreCategoria 
+        FROM productos p 
+        LEFT JOIN categoria c ON p.idCategoria = c.Id
+        WHERE p.idCategoria = categoria_id
+        ORDER BY p.Id DESC;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Consultar_Productos_Todos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Consultar_Productos_Todos`()
+BEGIN
+    SELECT p.Id as IdProducto, p.Nombre as NombreProducto, 
+           p.Descripcion, p.Precio, p.Imagen, p.Disponibilidad, 
+           c.Id as IdCategoria, c.Nombre as NombreCategoria 
+    FROM productos p 
+    LEFT JOIN categoria c ON p.idCategoria = c.Id
+    ORDER BY p.Id DESC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Consultar_Producto_Por_Id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Consultar_Producto_Por_Id`(IN p_id INT)
+BEGIN
+    SELECT * FROM productos WHERE Id = p_id AND Disponibilidad = 1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Eliminar_Producto_Carrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Eliminar_Producto_Carrito`(
+    IN p_IdUsuario INT,
+    IN p_IdProducto INT,
+    IN p_Color VARCHAR(50)
+)
+BEGIN
+    DECLARE v_conteo INT;
+    
+    DELETE FROM Carrito 
+    WHERE IdUsuario = p_IdUsuario 
+    AND IdProducto = p_IdProducto 
+    AND Color = p_Color;
+    
+    -- Obtener conteo actualizado
+    SELECT COUNT(*) INTO v_conteo FROM Carrito WHERE IdUsuario = p_IdUsuario;
+    
+    IF ROW_COUNT() > 0 THEN
+        SELECT 1 AS success, 'Producto eliminado del carrito' AS message, v_conteo AS conteo;
+    ELSE
+        SELECT 0 AS success, 'No se encontró el producto en el carrito' AS message, v_conteo AS conteo;
+    END IF;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -521,6 +802,47 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_NombreCategoria` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_NombreCategoria`(IN p_id INT)
+BEGIN
+	SELECT Nombre FROM categoria WHERE Id = p_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Nombre_Categoria` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Nombre_Categoria`(
+    IN categoria_id INT
+)
+BEGIN
+    SELECT 
+        COALESCE((SELECT Nombre FROM categoria WHERE Id = categoria_id), 'Todas las categorías') AS Nombre;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `SP_ObtenerCategorias` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -534,6 +856,112 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ObtenerCategorias`()
 BEGIN
     SELECT Id, Nombre FROM categoria ORDER BY Nombre ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Obtener_Carrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Obtener_Carrito`(
+    IN p_IdUsuario INT
+)
+BEGIN
+    SELECT 
+        c.IdProducto AS Id,
+        p.Nombre,
+        p.Imagen,
+        p.Precio,
+        c.Color,
+        c.Cantidad,
+        (p.Precio * c.Cantidad) AS Subtotal
+    FROM Carrito c
+    JOIN Productos p ON c.IdProducto = p.Id
+    WHERE c.IdUsuario = p_IdUsuario;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Obtener_Carrito_Detallado` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Obtener_Carrito_Detallado`(IN p_id_usuario INT)
+BEGIN
+    SELECT 
+        c.IdProducto AS id_producto,
+        p.Nombre AS nombre,
+        c.Color AS color,
+        c.Cantidad AS cantidad,
+        p.Precio AS precio,
+        p.Stock AS stock_disponible,
+        p.Imagen AS imagen
+    FROM Carrito c
+    JOIN Productos p ON c.IdProducto = p.IdProducto
+    WHERE c.IdUsuario = p_id_usuario;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Obtener_Colores_Producto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Obtener_Colores_Producto`(
+    IN P_IDPRODUCTO BIGINT
+)
+BEGIN
+    SELECT Color, Imagen
+    FROM producto_colores
+    WHERE IdProducto = P_IDPRODUCTO;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_Obtener_Conteo_Carrito` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Obtener_Conteo_Carrito`(
+    IN p_IdUsuario INT
+)
+BEGIN
+    SELECT IFNULL(SUM(Cantidad), 0) AS total
+    FROM Carrito
+    WHERE IdUsuario = p_IdUsuario;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -632,4 +1060,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-20  9:02:33
+-- Dump completed on 2025-04-22  5:50:15

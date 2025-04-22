@@ -1,0 +1,41 @@
+/* Estilos para el icono del carrito y su contador */
+.fide-carrito-icon {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #f6f6f6;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+.fide-carrito-icon:hover {
+    background-color: #eaeaea;
+}
+
+.fide-carrito-icon i {
+    color: #333;
+}
+
+.fide-carrito-counter {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: #e74c3c; /* Rojo vibrante */
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,54 @@
+.notificacion {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(100px);
+    opacity: 0;
+    animation: slideIn 0.5s forwards;
+}
+
+.notificacion.success {
+    background-color: #4CAF50;
+}
+
+.notificacion.error {
+    background-color: #F44336;
+}
+
+.notificacion.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+}
+
+.carrito-counter {
+    display: none;
+    background-color: #f44336;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}

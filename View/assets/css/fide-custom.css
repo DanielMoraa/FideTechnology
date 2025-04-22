@@ -1,0 +1,415 @@
+/* FIDE Technology Enhanced UI - Custom CSS (Actualizado) */
+
+/* Main theme colors */
+:root {
+  --fide-primary: #192f59;
+  --fide-secondary: #e6174b;
+  --fide-light: #f8f9fc;
+  --fide-dark: #333333;
+  --fide-accent: #4e73df;
+  --fide-success: #1cc88a;
+  --fide-warning: #f6c23e;
+  --fide-danger: #e74a3b;
+  --fide-gray: #858796;
+  --fide-card-border: rgba(0, 0, 0, 0.125);
+  --fide-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15);
+}
+
+/* Overall Page Styling */
+body.fide-body {
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  background-color: var(--fide-light);
+  color: var(--fide-dark);
+}
+
+/* Container and content area */
+.fide-container-fluid {
+  padding: 1.5rem;
+}
+
+/* Page Title Styling */
+.fide-page-title {
+  color: var(--fide-primary);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--fide-secondary);
+  display: inline-block;
+}
+
+/* Card Styling */
+.fide-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid var(--fide-card-border);
+  border-radius: 0.35rem;
+  box-shadow: var(--fide-shadow);
+  margin-bottom: 24px;
+  padding: 1.25rem;
+}
+
+.fide-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.fide-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.fide-filter-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.fide-filter-label {
+  margin-right: 0.5rem;
+  font-weight: 600;
+  color: var(--fide-primary);
+}
+
+.fide-filter-select {
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  min-width: 120px;
+}
+
+/* Button Styling */
+.fide-btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.fide-btn-primary {
+  color: #fff;
+  background-color: var(--fide-primary);
+  border-color: var(--fide-primary);
+}
+
+.fide-btn-primary:hover {
+  background-color: #112a50;
+  border-color: #112a50;
+}
+
+.fide-btn-secondary {
+  color: #fff;
+  background-color: var(--fide-secondary);
+  border-color: var(--fide-secondary);
+}
+
+.fide-btn-secondary:hover {
+  background-color: #d1103f;
+  border-color: #d1103f;
+}
+
+.fide-btn-outline-primary {
+  color: var(--fide-primary);
+  border-color: var(--fide-primary);
+  background-color: transparent;
+}
+
+.fide-btn-outline-primary:hover {
+  color: #fff;
+  background-color: var(--fide-primary);
+  border-color: var(--fide-primary);
+}
+
+.fide-add-btn {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fide-add-btn i {
+  font-size: 0.85rem;
+}
+
+/* Corner positioned add button */
+.fide-corner-add-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+}
+
+/* Table Styling */
+.fide-table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.fide-table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: var(--fide-dark);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.35rem;
+  overflow: hidden;
+}
+
+.fide-table thead th {
+  background-color: var(--fide-primary);
+  color: white;
+  padding: 0.75rem;
+  vertical-align: middle;
+  border-bottom: 2px solid #e3e6f0;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.fide-table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  border-top: 1px solid #e3e6f0;
+}
+
+.fide-table tbody tr:nth-of-type(odd) {
+  background-color: rgba(242, 242, 242, 0.5);
+}
+
+.fide-table tbody tr:hover {
+  background-color: rgba(78, 115, 223, 0.05);
+}
+
+/* Status indicators */
+.fide-status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.fide-status-available {
+  background-color: rgba(28, 200, 138, 0.15);
+  color: var(--fide-success);
+}
+
+.fide-status-unavailable {
+  background-color: rgba(231, 74, 59, 0.15);
+  color: var(--fide-danger);
+}
+
+/* Price column styling */
+.fide-price {
+  font-weight: 700;
+  color: var(--fide-primary);
+}
+
+/* Action buttons */
+.fide-action-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.fide-action-btn:hover {
+  background-color: rgba(78, 115, 223, 0.1);
+}
+
+.fide-action-btn i {
+  font-size: 1rem;
+}
+
+/* Pagination Styling */
+.fide-pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.35rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.fide-pagination-item {
+  margin: 0 2px;
+}
+
+.fide-pagination-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  line-height: 1.25;
+  color: var(--fide-primary);
+  background-color: #fff;
+  border: 1px solid #dddfeb;
+  text-decoration: none;
+  border-radius: 0.25rem;
+}
+
+.fide-pagination-link:hover {
+  z-index: 2;
+  color: var(--fide-secondary);
+  background-color: #eaecf4;
+  border-color: #dddfeb;
+}
+
+.fide-pagination-active .fide-pagination-link {
+  z-index: 3;
+  color: #fff;
+  background-color: var(--fide-primary);
+  border-color: var(--fide-primary);
+}
+
+/* Search box styling */
+.fide-search-wrapper {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.fide-search-label {
+  font-weight: 600;
+  color: var(--fide-primary);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.fide-search-input {
+  padding: 0.5rem 1rem 0.5rem 0.75rem;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.35rem;
+  width: 100%;
+  min-width: 250px;
+}
+
+/* DataTables Custom Styling */
+.fide-dataTables_wrapper {
+  width: 100%;
+}
+
+.fide-dataTables_wrapper .dataTables_length,
+.fide-dataTables_wrapper .dataTables_filter {
+  margin-bottom: 1rem;
+}
+
+.fide-dataTables_wrapper .dataTables_length select {
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.35rem;
+  background-color: #fff;
+}
+
+.fide-dataTables_wrapper .dataTables_filter {
+  text-align: right;
+}
+
+.fide-dataTables_wrapper .dataTables_filter label {
+  font-weight: 600;
+  color: var(--fide-primary);
+}
+
+.fide-dataTables_wrapper .dataTables_filter input {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.35rem;
+  margin-left: 0.5rem;
+  min-width: 200px;
+}
+
+.fide-dataTables_wrapper .dataTables_info {
+  color: var(--fide-gray);
+  padding-top: 0.85rem;
+}
+
+.fide-dataTables_wrapper .dataTables_paginate {
+  margin-top: 0.5rem;
+}
+
+.fide-dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.375rem 0.75rem;
+  margin-left: 3px;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  color: var(--fide-primary) !important;
+}
+
+.fide-dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background-color: var(--fide-primary) !important;
+  color: #fff !important;
+  border-color: var(--fide-primary);
+}
+
+.fide-dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: #eaecf4 !important;
+  color: var(--fide-secondary) !important;
+  border-color: #d1d3e2;
+}
+
+/* Record count display */
+.fide-record-count {
+  color: var(--fide-gray);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fide-filter-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .fide-filter-group {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .fide-search-input {
+    width: 100%;
+  }
+  
+  .fide-corner-add-btn {
+    position: static;
+    margin-bottom: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .fide-dataTables_wrapper .dataTables_filter {
+    text-align: left;
+    margin-top: 0.5rem;
+  }
+  
+  .fide-dataTables_wrapper .dataTables_filter input {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+}
+
+.dataTables_filter, .dataTables_length {
+  display: none !important;
+}

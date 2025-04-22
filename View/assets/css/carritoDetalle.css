@@ -1,0 +1,419 @@
+/* Estilos generales y reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* Contenedor principal */
+.fide1-carrito-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Migas de pan */
+.fide1-carrito-breadcrumb {
+    margin-bottom: 20px;
+    color: #777;
+    font-size: 14px;
+}
+
+.fide1-carrito-breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.fide1-carrito-breadcrumb a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Título principal */
+.fide1-carrito-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.fide1-carrito-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #ff5e14;
+}
+
+/* Carrito vacío */
+.fide1-carrito-empty {
+    text-align: center;
+    padding: 50px 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.fide1-carrito-empty p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Contenido del carrito */
+.fide1-carrito-content {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.fide1-carrito-items {
+    flex: 1 1 60%;
+    min-width: 300px;
+}
+
+.fide1-carrito-summary {
+    flex: 1 1 35%;
+    min-width: 300px;
+}
+
+/* Elementos del carrito */
+.fide1-carrito-item {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.fide1-carrito-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.fide1-carrito-item-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.fide1-carrito-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fide1-carrito-item-details {
+    flex: 1;
+}
+
+.fide1-carrito-item-details h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.fide1-carrito-item-color {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.fide1-carrito-item-price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ff5e14;
+    margin-bottom: 10px;
+}
+
+.fide1-carrito-item-quantity {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.fide1-carrito-item-quantity label {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.fide1-quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.fide1-quantity-btn {
+    background: #f0f0f0;
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.fide1-quantity-btn:hover {
+    background: #e0e0e0;
+}
+
+.fide1-quantity-input {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.fide1-carrito-item-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fide1-remove-item {
+    background: #fff !important;
+    color: #dc3545 !important;
+    border: 1px solid #dc3545 !important;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.fide1-remove-item:hover {
+    background: #dc3545 !important;
+    color: #fff !important;
+}
+
+/* Resumen del pedido */
+.fide1-summary-box {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.fide1-summary-box h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #222;
+}
+
+.fide1-summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: #666;
+}
+
+.fide1-summary-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    font-weight: 600;
+    font-size: 18px;
+    color: #222;
+}
+
+.fide1-btn-checkout {
+    width: 100%;
+    padding: 12px;
+    background: #ff5e14;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.fide1-btn-checkout:hover {
+    background: #e54d00;
+}
+
+/* Beneficios */
+.fide1-carrito-beneficios {
+    margin-top: 20px;
+}
+
+.fide1-beneficio {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.fide1-beneficio-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border-radius: 50%;
+    margin-right: 15px;
+    color: #ff5e14;
+    font-size: 18px;
+}
+
+.fide1-beneficio-text h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.fide1-beneficio-text p {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+/* Sección de ayuda */
+.fide1-carrito-help {
+    margin-top: 40px;
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.fide1-carrito-help h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.fide1-carrito-help p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.fide1-contact-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.fide1-contact-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.fide1-contact-option:hover {
+    transform: translateY(-5px);
+    color: #ff5e14;
+}
+
+.fide1-contact-option i {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+/* Botones y elementos interactivos */
+.fide1-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ff5e14;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.fide1-btn:hover {
+    background: #e54d00;
+}
+
+.fide1-btn-primary {
+    background: #007bff;
+}
+
+.fide1-btn-primary:hover {
+    background: #0056b3;
+}
+
+/* Carrito en la barra de navegación */
+.fide1-carrito-counter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff5e14;
+    color: white;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Estilos para el navbar del carrito */
+.fide1-nav-link {
+    position: relative;
+    display: inline-block;
+}
+
+.fide1-fa-shopping-cart {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .fide1-carrito-item {
+        flex-direction: column;
+    }
+
+    .fide1-carrito-item-image {
+        width: 100%;
+        height: 180px;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .fide1-carrito-item-actions {
+        margin-top: 15px;
+        align-items: flex-start;
+    }
+
+    .fide1-contact-options {
+        gap: 15px;
+    }
+}

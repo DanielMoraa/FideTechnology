@@ -3,67 +3,73 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Controller/ProductosCo
 include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/View/layoutInterno.php";
 
 $categorias = ConsultarCategorias();
-$mensaje = "";
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nombre = $_POST["nombre"];
-    $descripcion = $_POST["descripcion"];
-    $precio = floatval($_POST["precio"]);
-    $imagen = $_POST["imagen"];
-    $disponibilidad = isset($_POST["disponibilidad"]) ? 1 : 0;
-    $idCategoria = intval($_POST["id_categoria"]);
-
-    if (AgregarProducto($nombre, $descripcion, $precio, $imagen, $disponibilidad, $idCategoria)) {
-        $mensaje = "Producto agregado correctamente.";
-    } else {
-        $mensaje = "Error al agregar el producto.";
-    }
-}
 ?>
 
 <?php PrintCss(); ?>
 <body>
-<?php PrintNavBar(); ?>
-<div class="container mt-5">
-    <h2>Agregar Producto</h2>
-    <?php if ($mensaje): ?>
-        <div class="alert alert-info"><?php echo $mensaje; ?></div>
-    <?php endif; ?>
-    <form method="POST">
-        <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" name="nombre" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label>Descripción</label>
-            <textarea name="descripcion" class="form-control" required></textarea>
-        </div>
-        <div class="form-group">
-            <label>Precio</label>
-            <input type="number" step="0.01" name="precio" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label>URL de Imagen</label>
-            <input type="text" name="imagen" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label>Disponibilidad</label><br>
-            <input type="checkbox" name="disponibilidad" checked> En stock
-        </div>
-        <div class="form-group">
-            <label>Categoría</label>
-            <select name="id_categoria" class="form-control" required>
-                <option value="">Seleccione...</option>
-                <?php while ($categoria = $categorias->fetch_assoc()): ?>
-                    <option value="<?= $categoria['Id'] ?>"><?= $categoria['Nombre'] ?></option>
-                <?php endwhile; ?>
-            </select>
-        </div>
-        <br>
-        <button type="submit" class="btn btn-primary">Agregar Producto</button>
-    </form>
-</div>
-<?php PrintFooter(); ?>
-<?php PrintScript(); ?>
+    <?php PrintNavBar(); ?>
+    
+    <div class="container mt-5 fide-product-container">
+        <h2 class="fide-product-title">Agregar Producto</h2>
+        
+        <?php if(isset($_POST["Message"])) { 
+            echo '<div class="fide-alert">' . $_POST["Message"] . '</div>'; 
+        } ?>
+        
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="fide-form-group">
+                <label for="txtNombre" class="fide-form-label">Nombre del producto</label>
+                <input type="text" name="txtNombre" id="txtNombre" class="fide-form-control" placeholder="Ingrese nombre del producto" required>
+            </div>
+            
+            <div class="fide-form-group">
+                <label for="txtDescripcion" class="fide-form-label">Descripción</label>
+                <textarea name="txtDescripcion" id="txtDescripcion" class="fide-form-control fide-textarea" placeholder="Ingrese la descripción del producto" required></textarea>
+            </div>
+            
+            <div class="fide-form-group">
+                <label for="txtPrecio" class="fide-form-label">Precio</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                    </div>
+                    <input type="number" step="0.01" name="txtPrecio" id="txtPrecio" class="fide-form-control" placeholder="$0.00" required>
+                </div>
+            </div>
+            
+            <div class="fide-form-group">
+                <label for="txtImagen" class="fide-form-label">Imagen del producto</label>
+                <input type="file" class="fide-form-control fide-file-input" name="txtImagen" id="txtImagen" required accept="image/png, image/jpg, image/jpeg">
+                <small class="text-muted">Formatos aceptados: PNG, JPG, JPEG</small>
+            </div>
+            
+            <div class="fide-form-group">
+                <label class="fide-form-label">Disponibilidad</label>
+                <div class="fide-checkbox-group">
+                    <input type="hidden" name="txtDisponibilidad" value="0">
+                    <input type="checkbox" name="txtDisponibilidad" id="txtDisponibilidad" class="fide-checkbox" value="1" checked>
+                    <label for="txtDisponibilidad">En stock</label>
+                </div>
+            </div>
+            
+            <div class="fide-form-group">
+                <label for="txtCategoria" class="fide-form-label">Categoría</label>
+                <select name="txtCategoria" id="txtCategoria" class="fide-form-control" required>
+                    <option value="">Seleccione una categoría...</option>
+                    <?php while ($categoria = $categorias->fetch_assoc()): ?>
+                        <option value="<?= $categoria['Id'] ?>"><?= $categoria['Nombre'] ?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            
+            <div class="fide-form-group mt-100">
+                <button type="submit" class="fide-btn-submit" id="btnCrearProducto" name="btnCrearProducto">
+                    <i class="fas fa-plus-circle mr-2"></i> Agregar Producto
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <?php PrintFooter(); ?>
+    <?php PrintScript(); ?>
 </body>
 </html>

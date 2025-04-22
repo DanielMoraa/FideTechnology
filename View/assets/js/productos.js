@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loadMoreBtn.disabled = true;
             
             // Solicitud AJAX
-            fetch(`ajax/cargar_mas_consultarProductos.php?page=${currentPage}&categoria=${categoria}&keyword=${encodeURIComponent(keyword)}`)
+            fetch(`ajax/cargar_mas_consultarProducto.php?page=${currentPage}&categoria=${categoria}&keyword=${encodeURIComponent(keyword)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.productos && data.productos.length > 0) {

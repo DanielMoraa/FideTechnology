@@ -1,6 +1,4 @@
 <?php
-session_start();
-var_dump($_SESSION);
         include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Controller/ProductosController.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/View/layoutInterno.php";
         $categoria_id = isset($_GET['categoria']) ? intval($_GET['categoria']) : 0;
@@ -46,7 +44,7 @@ var_dump($_SESSION);
                         <span class="fmr-discount-badge">20% de Descuento</span>
                         <h1 class="fmr-hero-title">iPhone 16 <br>Pro Max</h1>
                         <p class="fmr-hero-subtitle">Aprovecha esta temporada de ofertas!</p>
-                        <a href="#" class="fmr-btn">Comprar Ahora</a>
+                        <a href="../Productos/detalleProducto.php?id=8" class="fmr-btn">Comprar Ahora</a>
                     </div>
                     <div class="fmr-hero-image">
                         <img src="../assets/img/hero/hero_man.png" alt="iPhone 16 Pro Max">
@@ -85,9 +83,9 @@ if(!empty($categorias_array)) {
     <!-- Sección de productos -->
     <section class="product_list section_padding">
         <div class="container">
-        <div class="fmr-section-title">
-                 <h2>Productos</h2>
-             </div>
+            <div class="fmr-section-title">
+                <h2>Productos</h2>
+            </div>
             
             <!-- Filtros -->
             <div class="ft_filters_container">
@@ -152,7 +150,7 @@ if(!empty($categorias_array)) {
                                 </div>
                                 <div class="ft_product_info">
                                     <h3 class="ft_product_title">
-                                        <a href="producto.php?id=<?php echo $producto['IdProducto']; ?>">
+                                        <a href="../Productos/detalleProducto.php?id=<?php echo $producto['IdProducto']; ?>">
                                             <?php echo $producto['NombreProducto']; ?>
                                         </a>
                                     </h3>

@@ -3,7 +3,7 @@
     include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Controller/LoginController.php";
 ?>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="es">
 
 <?php PrintCss();?>
 <body>
@@ -19,7 +19,7 @@
                             <h2>¿Nuevo en nuestra tienda?</h2>
                             <p>Regístrate y sumérgete en una variada gama de celulares, tablets y accesorios de la mejor
                                 calidad.</p>
-                            <a href="#" class="btn_3">Crear una cuenta</a>
+                            <a href="registrarCuenta.php" class="btn_3">Crear una cuenta</a>
                         </div>
                     </div>
                 </div>
@@ -29,16 +29,16 @@
                             <h1>Iniciar Sesión</h1>
                         </div>
                         <div class="form-outline mb-4">
-                            <input type="email"  class="form-control form-control-lg"
-                                placeholder="Correo electrónico" id="txtCorreo" name ="txtCorreo" value="<?php echo $correoRecordado; ?>"required maxlength="45"/>
+                            <input type="email" class="form-control form-control-lg"
+                                placeholder="Correo electrónico" id="txtCorreo" name="txtCorreo" value="<?php echo htmlspecialchars($correoRecordado); ?>" required maxlength="45"/>
                         </div>
                         <div class="form-outline mb-3">
                             <input type="password" class="form-control form-control-lg"
-                                placeholder="Contraseña" id="txtContrasenna" name ="txtContrasenna" required maxlength="15"/>
+                                placeholder="Contraseña" id="txtContrasenna" name="txtContrasenna" required maxlength="15"/>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="form-check">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="cbRecordar" name = "cbRecordar"  <?php echo (isset($_COOKIE["correo_recordado"])) ? "checked" : ""; ?>/>
+                                <input class="form-check-input me-2" type="checkbox" value="" id="cbRecordar" name="cbRecordar" <?php echo (isset($_COOKIE["correo_recordado"])) ? "checked" : ""; ?>/>
                                 <label class="form-check-label" for="cbRecordar">
                                     Recordar
                                 </label>
@@ -46,11 +46,15 @@
                             <a href="../Login/recuperarContrasenna.php" class="text-body fw-bold">¿Olvidaste tu contraseña?</a>
                         </div>
                         <?php
-                                if(isset($_POST["Message"]))
-                                {
-                                    echo '<div class="alert alert-danger Mensajes">' . $_POST["Message"] . '</div>';                                   
-                                }
-                            ?>
+                            if(isset($_POST["Message"]))
+                            {
+                                echo '<div class="alert alert-danger Mensajes">' . htmlspecialchars($_POST["Message"]) . '</div>';                                   
+                            }
+                            if(isset($_POST["Exito"]))
+                            {
+                                echo '<div class="alert alert-success Mensajes">' . htmlspecialchars($_POST["Exito"]) . '</div>';                                   
+                            }
+                        ?>
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit" class="btn btn-primary btn-lg"
                                 style="padding-left: 2.5rem; padding-right: 2.5rem;" id="btnIniciarSesion"
