@@ -134,7 +134,7 @@ function ActualizarProductoModel($id, $nombre, $descripcion, $precio, $imagen, $
 function ObtenerColoresProductoModel($idProducto) {
     $colores = [];
     try {
-        $context = AbrirBaseDatos(); // asegúrate de que esto retorna un objeto mysqli válido
+        $context = AbrirBaseDatos(); 
 
         $sql = "CALL SP_Obtener_Colores_Producto(?)";
         $stmt = $context->prepare($sql);

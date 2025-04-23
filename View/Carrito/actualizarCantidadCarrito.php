@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             
-            $costoEnvio = ($subtotal > 20000) ? 0 : 2500;
+            $costoEnvio = ($subtotal > 50.000) ? 0 : 25.000;
             $total = $subtotal + $costoEnvio;
             
             $resultado['subtotal'] = $subtotal;

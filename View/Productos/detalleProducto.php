@@ -92,9 +92,9 @@
                 </div>
 
                 <div class="producto-price-container">
-                    <span class="producto-price"><?= number_format($producto['Precio'], 0) ?>$</span>
+                    <span class="producto-price">₡<?= number_format($producto['Precio'], 3) ?></span>
                     <?php if (isset($producto['PrecioRegular']) && $producto['PrecioRegular'] > $producto['Precio']): ?>
-                    <span class="producto-price-regular"><?= number_format($producto['PrecioRegular'], 0) ?>$</span>
+                    <span class="producto-price-regular">₡<?= number_format($producto['PrecioRegular'], 3) ?></span>
                     <?php endif; ?>
                 </div>
 
@@ -215,33 +215,36 @@ $(document).ready(function() {
     });
 
     // Manejar envío del formulario con AJAX
-    $('#add-to-cart-form').on('submit', function(e) {
-        e.preventDefault();
-        
-        $.ajax({
-            url: $(this).attr('action'),
-            type: 'POST',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    // Mostrar notificación de éxito
-                    alert('Producto agregado al carrito');
-                    
-                    // Actualizar contador del carrito
-                    if (response.conteo !== undefined) {
-                        $('.carrito-counter').text(response.conteo).show();
+$('#add-to-cart-form').on('submit', function(e) {
+    e.preventDefault();
+    
+    $.ajax({
+        url: $(this).attr('action'),
+        type: 'POST',
+        data: $(this).serialize(),
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                // Mostrar notificación de éxito
+                alert('Producto agregado al carrito');
+                
+                // Actualizar contador del carrito
+                if (response.conteo !== undefined) {
+                    $('.carrito-counter').text(response.conteo).show();
+                    // Si la operación fue exitosa, marcamos como sincronizado
+                    if (!response.guest) {
+                        sessionStorage.setItem('carrito_sincronizado', 'true');
                     }
-                    
-                    // Si es usuario invitado, actualizar carrito local
-                    if (response.guest) {
-                        // Aquí puedes agregar lógica para el carrito local si es necesario
-                    }
-                } else {
-                    alert(response.message || 'Error al agregar al carrito');
                 }
-            },
-        });
+                
+                // Si es usuario invitado, actualizar carrito local
+                if (response.guest) {
+                    // Aquí puedes agregar lógica para el carrito local si es necesario
+                }
+            } else {
+                alert(response.message || 'Error al agregar al carrito');
+            }
+        },
     });
 });
 </script>

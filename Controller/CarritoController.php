@@ -61,7 +61,6 @@ function SincronizarCarrito($idUsuario, $carritoLocal) {
     $errores = [];
     
     foreach ($carritoLocal as $item) {
-        // Validar estructura del item
         if (!isset($item['id_producto']) || !isset($item['color']) || !isset($item['cantidad'])) {
             $errores[] = 'Item con estructura inválida';
             continue;
@@ -125,7 +124,7 @@ function EliminarDelCarrito($idUsuario, $idProducto, $color) {
             }
         }
         
-        $costoEnvio = ($subtotal > 20000) ? 0 : 2500;
+        $costoEnvio = ($subtotal > 50.000) ? 0 : 25.000;
         $total = $subtotal + $costoEnvio;
         
         $resultado['subtotal'] = $subtotal;
@@ -175,7 +174,6 @@ function ProcesarActualizarCantidad() {
         return ['success' => false, 'message' => 'Datos inválidos'];
     }
     
-    // Actualizar directamente usando el SP
     try {
         $context = AbrirBaseDatos();
         $sentencia = $context->prepare("CALL SP_Actualizar_Cantidad_Carrito(?, ?, ?, ?)");
@@ -185,14 +183,11 @@ function ProcesarActualizarCantidad() {
         $respuesta = $resultado->fetch_assoc();
         CerrarBaseDatos($context);
         
-        // Corregir los nombres de columnas según el SP
-        $exito = ($respuesta['success'] == 1); // o según corresponda con tu SP
+        $exito = ($respuesta['success'] == 1); 
         
         if ($exito) {
-            // Actualizar conteo en sesión
             $_SESSION['carrito_count'] = ObtenerConteoCarrito($idUsuario);
             
-            // Obtener nuevos totales
             $productosCarrito = ObtenerCarrito($idUsuario);
             $subtotal = 0;
             
@@ -200,7 +195,7 @@ function ProcesarActualizarCantidad() {
                 $subtotal += $producto['Precio'] * $producto['Cantidad'];
             }
             
-            $costoEnvio = ($subtotal > 20000) ? 0 : 2500;
+            $costoEnvio = ($subtotal > 50.000) ? 0 : 25.000;
             $total = $subtotal + $costoEnvio;
             
             return [
@@ -210,7 +205,7 @@ function ProcesarActualizarCantidad() {
                 'subtotal' => $subtotal,
                 'envio' => $costoEnvio,
                 'total' => $total,
-                'conteo' => $_SESSION['carrito_count'] // Agregado para actualizar el contador
+                'conteo' => $_SESSION['carrito_count'] 
             ];
         } else {
             return [
@@ -224,7 +219,6 @@ function ProcesarActualizarCantidad() {
     }
 }
 
-// Manejar todas las solicitudes AJAX
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
     

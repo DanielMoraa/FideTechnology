@@ -32,7 +32,7 @@ $categorias = ConsultarCategorias();
                 <div class="input-group">
                     <div class="input-group-prepend">
                     </div>
-                    <input type="number" step="0.01" name="txtPrecio" id="txtPrecio" class="fide-form-control" placeholder="$0.00" required>
+                    <input type="number" step="0.01" name="txtPrecio" id="txtPrecio" class="fide-form-control" placeholder="$0.000" required>
                 </div>
             </div>
             

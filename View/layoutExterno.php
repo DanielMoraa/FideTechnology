@@ -52,14 +52,6 @@
                                         <li>+777 2345 7886</li>
                                     </ul>
                                 </div>
-                                <div class="header-info-right">
-                                   <ul>                                          
-                                       <li><a href="login.html">Mi cuenta </a></li>
-                                       <li><a href="product_list.html">Lista de Deseos</a></li>
-                                       <li><a href="cart.html">Carrito</a></li>
-                                       <li><a href="checkout.html">Checkout</a></li>
-                                   </ul>
-                                </div>
                             </div>
                        </div>
                    </div>
@@ -227,28 +219,28 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Productos</h4>
-                                <ul>
-                                    <li><a href="#">Celulares</a></li>
-                                    <li><a href="#">Tablets</a></li>
-                                    <li><a href="#">Accesorios</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>Servicio al cliente</h4>
-                                <ul>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Términos y condiciones</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Productos</h4>
+                               <ul>
+                                   <li><a href="../Productos/consultarProducto.php?categoria=1">Celulares</a></li>
+                                   <li><a href="../Productos/consultarProducto.php?categoria=2">Tablets</a></li>
+                                   <li><a href="../Productos/consultarProducto.php?categoria=3">Accesorios</a></li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Servicio al cliente</h4>
+                               <ul>
+                                <li><a href="../Home/faq.php">FAQ</a></li>
+                                <li><a href="../Home/terminos.php">Términos y condiciones</a></li>
+                            </ul>
+                           </div>
+                       </div>
+                   </div>
                 </div>
                 <div class="row">
                     <div class="col-xl-7 col-lg-7 col-md-7">

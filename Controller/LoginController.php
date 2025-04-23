@@ -1,11 +1,9 @@
 <?php
-    // Iniciar sesión al comienzo del archivo
     include_once $_SERVER["DOCUMENT_ROOT"] . "/FideTechnology/Model/LoginModel.php";
 
     if(session_status() == PHP_SESSION_NONE){
         session_start();
     }
-    // Función para verificar si hay una sesión activa
     function VerificarSesion()
     {
         if (isset($_SESSION["NombreUsuario"])) {
@@ -15,7 +13,6 @@
         }
     }
 
-    // Función para generar tokens
     function GenerarTokenCorreo() {
         return bin2hex(random_bytes(32));
     }
@@ -24,7 +21,6 @@
         return bin2hex(random_bytes(3));
     }
 
-    // Función para enviar correos
     function EnviarCorreo($asunto, $contenido, $destinatario) {
         require 'PHPMailer/src/PHPMailer.php';
         require 'PHPMailer/src/SMTP.php';
@@ -55,13 +51,11 @@
         }
     }
 
-    // Recuperar correo recordado si existe
     $correoRecordado = "";
     if(isset($_COOKIE["correo_recordado"])) {
         $correoRecordado = $_COOKIE["correo_recordado"];
     }
 
-    // Iniciar sesión
     if(isset($_POST["btnIniciarSesion"]))
     {
         $correo = $_POST["txtCorreo"];
@@ -78,11 +72,10 @@
             $_SESSION["NombreUsuario"] = $datos["NombreUsuario"];
             $_SESSION["NombrePerfil"] = $datos["NombrePerfil"];
             $_SESSION["IdPerfil"] = $datos["IdPerfil"];
-            $_SESSION["carrito_count"] = 0; // Inicializar contador del carrito
+            $_SESSION["carrito_count"] = 0; 
 
-            // Manejar la cookie de recordar
             if($recordar) {
-                setcookie("correo_recordado", $correo, time() + (86400 * 30), "/"); // 30 días
+                setcookie("correo_recordado", $correo, time() + (86400 * 30), "/"); 
             } else {
                 if(isset($_COOKIE["correo_recordado"])) {
                     setcookie("correo_recordado", "", time() - 3600, "/");
@@ -98,7 +91,6 @@
         }
     }
 
-    // Cerrar sesión
     if(isset($_POST["btnSalir"]))
     {
         session_destroy();
@@ -106,7 +98,6 @@
         exit();
     }
 
-    // Activación de cuenta por token
     if (isset($_GET["token"])) {
         $token = $_GET["token"];
 
@@ -125,7 +116,6 @@
         }
     }
 
-    // Recuperar contraseña
     if(isset($_POST["btnRecuperarContrasenna"]))
     {
         $correo = $_POST["txtCorreo"];
@@ -137,10 +127,8 @@
             $datos = mysqli_fetch_array($resultado);
             $codigo = GenerarTokenContra();
 
-            // Actualizar Contraseña por el código
             $resultadoActualizacion = ActualizarContrasennaModel($datos["Id"], $codigo);
 
-            // Enviamos el correo
             $contenido = "<html><body>
             Estimado(a) " . $datos["NombreUsuario"] . "<br/><br/>
             Se ha generado el siguiente código de seguridad: <b>" . $codigo . "</b><br/>
@@ -163,7 +151,6 @@
         }
     }
     
-    // Registrar nueva cuenta
     if(isset($_POST["btnRegistrar"])) {
         $nombre = $_POST["txtNombre"];
         $correo = $_POST["txtCorreo"];
@@ -171,15 +158,11 @@
         $activacion = GenerarTokenCorreo();
     
         try {
-            // Registrar usuario con token
             $resultado = RegistrarCuentaModel($nombre, $correo, $contrasena, $activacion);
             
             if ($resultado) {
-                // Obtener el ID del usuario recién registrado
-                // Nota: Ajustar esta parte según el SP_RegistrarCuenta (debe retornar el ID)
                 $idUsuario = $resultado->insert_id ?? $resultado;
 
-                // Generar enlace de activación
                 $linkActivacion = "http://localhost:81/FideTechnology/View/Login/activarCuenta.php?token=" . $activacion;
                 
                 $contenido = "<html><body>

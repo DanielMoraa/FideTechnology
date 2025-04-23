@@ -15,13 +15,11 @@
         {
             $context = AbrirBaseDatos();
 
-            // Prevención de SQL Injection con prepared statements
             $stmt = $context->prepare("CALL SP_RegistrarCuenta(?, ?, ?, ?)");
             $stmt->bind_param("ssss", $nombre, $correo, $contrasenna, $activacion);
             $stmt->execute();
             $resultado = $stmt->get_result();
             
-            // Nota: Si el SP devuelve el ID del usuario insertado, obtenerlo aquí
             
             $stmt->close();
             CerrarBaseDatos($context);
@@ -45,7 +43,6 @@
         {
             $context = AbrirBaseDatos();
 
-            // Prevención de SQL Injection con prepared statements
             $stmt = $context->prepare("CALL SP_IniciarSesion(?, ?)");
             $stmt->bind_param("ss", $correo, $contrasenna);
             $stmt->execute();
@@ -72,7 +69,6 @@
         {
             $context = AbrirBaseDatos();
 
-            // Prevención de SQL Injection con prepared statements
             $stmt = $context->prepare("CALL SP_ValidarUsuarioCorreo(?)");
             $stmt->bind_param("s", $correo);
             $stmt->execute();
@@ -100,7 +96,6 @@
         {
             $context = AbrirBaseDatos();
 
-            // Prevención de SQL Injection con prepared statements
             $stmt = $context->prepare("CALL SP_ActualizarContrasenna(?, ?)");
             $stmt->bind_param("is", $id, $codigo);
             $stmt->execute();
@@ -128,7 +123,6 @@
         {
             $context = AbrirBaseDatos();
             
-            // Prevención de SQL Injection con prepared statements
             $stmt = $context->prepare("CALL SP_GuardarTokenActivacion(?, ?)");
             $stmt->bind_param("is", $idUsuario, $token);
             $stmt->execute();
@@ -155,7 +149,6 @@
         {
             $context = AbrirBaseDatos();
             
-            // Prevención de SQL Injection con prepared statements
             $stmt = $context->prepare("CALL SP_ValidarToken(?)");
             $stmt->bind_param("s", $token);
             $stmt->execute();
@@ -182,7 +175,6 @@
         {
             $context = AbrirBaseDatos();
             
-            // Prevención de SQL Injection con prepared statements
             $stmt = $context->prepare("CALL SP_ActivarCuenta(?)");
             $stmt->bind_param("i", $idUsuario);
             $stmt->execute();

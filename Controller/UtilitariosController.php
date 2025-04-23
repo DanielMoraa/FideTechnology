@@ -6,7 +6,7 @@
         require 'PHPMailer/src/SMTP.php';
 
         $correoSalida = "fchacon20461@ufide.ac.cr";
-        $contrasennaSalida = "xxxxxxxxxx"; // Cambia esto por tu contraseña real
+        $contrasennaSalida = "xxxxxxxxxx"; 
 
         $mail = new PHPMailer();
         $mail -> CharSet = 'UTF-8';
@@ -29,11 +29,11 @@
         {
             if ($mail->send()) 
             {
-                return true; // Envío exitoso
+                return true; 
             } 
             else 
             {
-                return true; // Falló el envío
+                return true; 
             }
         } catch (Exception $e) 
         {

@@ -156,7 +156,7 @@ if(!empty($categorias_array)) {
                                     </h3>
                                     <div class="ft_price_category">
                                         <div class="ft_price_tag">
-                                            $<?php echo number_format($producto['Precio'], 2); ?>
+                                        ₡<?php echo number_format($producto['Precio'], 3); ?>
                                         </div>
                                         <div class="ft_category_tag">
                                             <?php echo $producto['NombreCategoria']; ?>

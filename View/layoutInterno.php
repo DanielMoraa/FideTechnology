@@ -36,6 +36,8 @@
         <link rel="stylesheet" href="../assets/css/fide-custom.css">
         <link rel="stylesheet" href="../assets/css/carritoDetalle.css">
         <link rel="stylesheet" href="../assets/css/notificaciones.css">
+        <link rel="stylesheet" href="../assets/css/faq.css">
+        <link rel="stylesheet" href="../assets/css/acercaDe.css">
         </head>';   
     }
     
@@ -48,16 +50,13 @@ function PrintNavBar()
     
     $usuario = VerificarSesion();
     
-    // Inicializar contador de carrito si no existe
     if (!isset($_SESSION["carrito_count"])) {
         $_SESSION["carrito_count"] = 0;
     }
-    
-    // Obtener información del perfil y carrito
+
     $nombrePerfil = isset($_SESSION["NombrePerfil"]) ? $_SESSION["NombrePerfil"] : "";
     $carrito_count = $_SESSION["carrito_count"] ?? 0;
     
-    // Obtener parámetros de búsqueda si existen
     $keyword = isset($_GET["keyword"]) ? htmlspecialchars($_GET["keyword"]) : "";
     $categoria_id = isset($_GET["categoria"]) ? intval($_GET["categoria"]) : 0;
     
@@ -68,33 +67,13 @@ function PrintNavBar()
                <div class="container-fluid">
                    <div class="col-xl-12">
                         <div class="row d-flex justify-content-between align-items-center">
-                            <div class="header-info-left d-flex">
-                                <div class="flag">
-                                    <img src="../assets/img/icon/header_icon.png" alt="">
-                                </div>
-                                <div class="select-this">
-                                    <form action="#">
-                                        <div class="select-itms">
-                                            <select name="select" id="select1">
-                                                <option value="">USA</option>
-                                                <option value="">SPN</option>
-                                            </select>
-                                        </div>
-                                    </form>
-                                </div>
-                                <ul class="contact-now">     
-                                    <li>+777 2345 7886</li>
-                                </ul>
-                            </div>
+
                             <div class="header-info-right">
                                <ul>';
     
-    // Enlaces condicionales basados en si hay un usuario logueado
     if ($usuario) {
         echo '<li><a href="../Usuario/actualizarDatos.php">Mi cuenta </a></li>
-              <li><a href="product_list.html">Lista de Deseos</a></li>
-              <li><a href="../Carrito/carritoDetalle.php">Carrito</a></li>
-              <li><a href="checkout.html">Checkout</a></li>';
+              <li><a href="../Carrito/carritoDetalle.php">Carrito</a></li>';
     } else {
         echo '<li><a href="../Login/login.php">Ingresar</a></li>
               <li><a href="../Login/registrarCuenta.php">Registrarse</a></li>';
@@ -144,12 +123,11 @@ function PrintNavBar()
                                             </ul>
                                         </li>';
                                         
-    // Agregar opción "Agregar productos" solo para vendedores
     if(isset($_SESSION["IdPerfil"]) && $_SESSION["IdPerfil"] == "3") {
         echo '<li><a href="../Productos/gestionProducto.php">Gestionar productos</a></li>';
     }
                                         
-    echo '<li><a href="contacto.php">Contacto</a></li>
+    echo '<li><a href="../Home/contacto.php">Contacto</a></li>
     </ul>
     </nav>
     </div>
@@ -164,19 +142,11 @@ function PrintNavBar()
                            placeholder="Buscar productos..." 
                            value="' . $keyword . '">';
                     
-    // Agregar campo oculto para categoría si existe
     if($categoria_id > 0) {
         echo '<input type="hidden" name="categoria" value="' . $categoria_id . '">';
     }
     
     echo '</form>
-            </div>
-        </li>
-
-        <!-- Favoritos -->
-        <li class="d-none d-xl-block ml-3">
-            <div class="favorit-items">
-                <i class="far fa-heart"></i>
             </div>
         </li>
         
@@ -190,7 +160,6 @@ function PrintNavBar()
   </div>
 </li>';
 
-    // UI específica para usuarios autenticados
     if ($usuario) {
         echo '<li class="nav-item dropdown no-arrow ml-3">
                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
@@ -200,16 +169,11 @@ function PrintNavBar()
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                      aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="../Usuario/perfil.php">
+                    <a class="dropdown-item" href="../Usuario/actualizarDatos.php">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 AlineacionOpciones"></i>
                         Perfil
-                    </a>
-                    <a class="dropdown-item" href="../Usuario/seguridad.php">
-                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400 AlineacionOpciones"></i>
-                        Seguridad
                     </a>';
                     
-        // Menú específico para vendedores
         if(isset($_SESSION["IdPerfil"]) && $_SESSION["IdPerfil"] == "3") {
             echo '<a class="dropdown-item" href="../Productos/agregarProducto.php">
                 <i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400 AlineacionOpciones"></i>
@@ -227,7 +191,6 @@ function PrintNavBar()
         </div>
       </li>';
     } else {
-        // Botón de inicio de sesión para usuarios no autenticados
         echo '<li class="d-none d-lg-block"> <a href="../Login/login.php" class="btn header-btn">Iniciar sesión</a></li>';
     }
                             
@@ -307,8 +270,8 @@ function PrintNavBar()
                            <div class="footer-tittle">
                                <h4>Acceso rápido</h4>
                                <ul>
-                                   <li><a href="#">Acerca de</a></li>
-                                   <li><a href="#">  Contáctenos</a></li>
+                                   <li><a href="../Home/acercaDe.php">Acerca de</a></li>
+                                   <li><a href="../Home/contacto.php">  Contáctenos</a></li>
                                </ul>
                            </div>
                        </div>
@@ -318,9 +281,9 @@ function PrintNavBar()
                            <div class="footer-tittle">
                                <h4>Productos</h4>
                                <ul>
-                                   <li><a href="#">Celulares</a></li>
-                                   <li><a href="#">Tablets</a></li>
-                                   <li><a href="#">Accesorios</a></li>
+                                   <li><a href="../Productos/consultarProducto.php?categoria=1">Celulares</a></li>
+                                   <li><a href="../Productos/consultarProducto.php?categoria=2">Tablets</a></li>
+                                   <li><a href="../Productos/consultarProducto.php?categoria=3">Accesorios</a></li>
                                </ul>
                            </div>
                        </div>
@@ -330,8 +293,8 @@ function PrintNavBar()
                            <div class="footer-tittle">
                                <h4>Servicio al cliente</h4>
                                <ul>
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Términos y condiciones</a></li>
+                                <li><a href="../Home/faq.php">FAQ</a></li>
+                                <li><a href="../Home/terminos.php">Términos y condiciones</a></li>
                             </ul>
                            </div>
                        </div>

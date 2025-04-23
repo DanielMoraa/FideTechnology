@@ -70,7 +70,7 @@ $tiene_resultados = ($productos && $productos->num_rows > 0);
                                 </h3>
                                 <div class="ft_price_category">
                                     <div class="ft_price_tag">
-                                        $<?php echo number_format($producto['Precio'], 2); ?>
+                                    ₡<?php echo number_format($producto['Precio'], 2); ?>
                                     </div>
                                     <div class="ft_category_tag">
                                         <?php echo $producto['NombreCategoria']; ?>

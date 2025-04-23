@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    // Manejar cambio de cantidad
     $('.fide1-carrito-items').on('click', '.increment, .decrement', function() {
         const $btn = $(this);
         const $input = $btn.siblings('.fide1-quantity-input');
@@ -16,21 +15,18 @@ $(document).ready(function() {
         updateQuantity(productId, quantity);
     });
     
-    // Eliminar item del carrito
     $('.fide1-carrito-items').on('click', '.remove-item', function(e) {
         e.preventDefault();
         const $item = $(this).closest('.fide1-carrito-item');
         const productId = $(this).data('id');
-        const color = $(this).data('color'); // Obtener color del data-attribute
+        const color = $(this).data('color'); 
         
         if (confirm('¿Eliminar este producto del carrito?')) {
             removeItem(productId, color, $item);
         }
     });
     
-    // Función para actualizar cantidad
     function updateQuantity(productId, quantity) {
-        // Obtener el color del producto directamente del DOM
         const $item = $(`.fide1-carrito-item[data-id="${productId}"]`);
         const color = $item.find('.fide1-carrito-item-color').text().replace('Color: ', '').trim();
         
@@ -49,7 +45,6 @@ $(document).ready(function() {
             success: function(response) {
                 console.log("Respuesta:", response);
                 if (response.success) {
-                    // Actualizar el contador del carrito en el navbar
                     if (response.conteo !== undefined) {
                         $('.carrito-counter').text(response.conteo).show();
                     }
@@ -65,7 +60,6 @@ $(document).ready(function() {
         });
     }
     
-    // Función para eliminar item
     function removeItem(productId, color, $item) {
         $.ajax({
             url: '../Carrito/eliminarDelCarrito.php',
@@ -88,22 +82,16 @@ $(document).ready(function() {
                     location.reload();
                 }
             },
-            error: function(xhr, status, error) {
-                console.error("Error en la solicitud AJAX:", status, error);
-                alert("Error al eliminar el producto. Por favor, inténtalo de nuevo.");
-            }
         });
     }
     
-    // Actualizar totales del carrito
     function updateTotals(data) {
         if (data.subtotal !== undefined) {
-            $('.fide1-summary-row:eq(0) span:eq(1)').text('$' + formatNumber(data.subtotal));
-            $('.fide1-summary-row:eq(1) span:eq(1)').text('$' + formatNumber(data.envio));
-            $('.fide1-summary-total span:eq(1)').text('$' + formatNumber(data.total));
+            $('.fide1-summary-row:eq(0) span:eq(1)').text('₡' + formatNumber(data.subtotal));
+            $('.fide1-summary-row:eq(1) span:eq(1)').text('₡' + formatNumber(data.envio));
+            $('.fide1-summary-total span:eq(1)').text('₡' + formatNumber(data.total));
         }
         
-        // Actualizar el contador del carrito en el navbar
         if (data.conteo !== undefined) {
             $('.carrito-counter').text(data.conteo);
             if (data.conteo > 0) {
@@ -114,8 +102,7 @@ $(document).ready(function() {
         }
     }
     
-    // Formatear número con separadores de miles
     function formatNumber(num) {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return parseFloat(num).toFixed(3).replace(/\d(?=(\d{3})+\.)/g, '$&.').replace('.', ',');
     }
 });

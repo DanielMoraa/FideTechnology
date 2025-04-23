@@ -1,0 +1,230 @@
+     
+        .ft-about .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        
+        .ft-about .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ft-about .logo-icon {
+            margin-right: 10px;
+            font-size: 3rem;
+        }
+        
+        .ft-about nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ft-about .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .ft-about .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .ft-about .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .ft-about .nav-links a:hover {
+            color: #fdbb2d;
+        }
+        
+        /* Hero Section */
+        .ft-about .hero {
+            background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .ft-about .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .ft-about .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .ft-about .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .ft-about .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* About Sections */
+        .ft-about .about-section {
+            padding: 80px 0;
+        }
+        
+        .ft-about .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #1a2a6c;
+        }
+        
+        .ft-about .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .ft-about .about-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .ft-about .about-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .ft-about .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #b21f1f;
+        }
+        
+        .ft-about .about-card i {
+            font-size: 2.5rem;
+            color: #1a2a6c;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        /* Team Section */
+        .ft-about .team {
+            background-color: #1a2a6c;
+            padding: 80px 0;
+            color: white;
+        }
+        
+        .ft-about .team .section-title {
+            color: white;
+        }
+        
+        .ft-about .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .ft-about .team-member {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .ft-about .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ft-about .member-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .ft-about .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .ft-about .team-member:hover .member-img img {
+            transform: scale(1.1);
+        }
+        
+        .ft-about .member-info {
+            padding: 20px;
+        }
+        
+        .ft-about .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .ft-about .member-info p {
+            color: #fdbb2d;
+            font-weight: 500;
+        }
+        
+        /* Values Section */
+        .ft-about .values {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .ft-about .values-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .ft-about .value-item {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        
+        .ft-about .value-icon {
+            font-size: 2rem;
+            color: #b21f1f;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .ft-about .value-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .ft-about .nav-links {
+                display: none;
+            }
+            
+            .ft-about .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .ft-about .section-title {
+                font-size: 2rem;
+            }
+        }

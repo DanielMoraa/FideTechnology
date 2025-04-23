@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <a href="producto.php?id=${producto.IdProducto}">${producto.NombreProducto}</a>
                         </h3>
                         <div class="ft_price_category">
-                            <div class="ft_price_tag">$${parseFloat(producto.Precio).toFixed(2)}</div>
+                            <div class="ft_price_tag">₡${parseFloat(producto.Precio).toFixed(2)}</div>
                             <div class="ft_category_tag">${producto.NombreCategoria}</div>
                         </div>
                         ${disponibilidadBadge}

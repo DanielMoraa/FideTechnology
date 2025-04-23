@@ -71,7 +71,6 @@ function ActualizarCantidadCarritoModel($idUsuario, $idProducto, $color, $cantid
     try {
         $context = AbrirBaseDatos();
         
-        // Primero verificar si existe el producto en el carrito
         $checkSql = "SELECT COUNT(*) as existe FROM carrito WHERE IdUsuario = ? AND IdProducto = ? AND Color = ?";
         $checkStmt = $context->prepare($checkSql);
         $checkStmt->bind_param("iis", $idUsuario, $idProducto, $color);
@@ -87,7 +86,6 @@ function ActualizarCantidadCarritoModel($idUsuario, $idProducto, $color, $cantid
             ];
         }
         
-        // Actualizar la cantidad
         $updateSql = "UPDATE carrito SET Cantidad = ? WHERE IdUsuario = ? AND IdProducto = ? AND Color = ?";
         $updateStmt = $context->prepare($updateSql);
         $updateStmt->bind_param("iiis", $cantidad, $idUsuario, $idProducto, $color);

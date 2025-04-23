@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="fide-form-group">
                 <label for="txtPrecio" class="fide-form-label">Precio</label>
-                <input type="number" step="0.01" name="txtPrecio" id="txtPrecio" class="fide-form-control" value="<?= $producto['Precio'] ?>" required>
+                <input type="number" step="0.03" name="txtPrecio" id="txtPrecio" class="fide-form-control" value="<?= $producto['Precio'] ?>" required>
             </div>
 
             <div class="fide-form-group">

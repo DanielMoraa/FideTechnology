@@ -44,7 +44,7 @@ if (!empty($productosCarrito)) {
     }
 }
 
-$costoEnvio = ($subtotal > 20000) ? 0 : 2500;
+$costoEnvio = ($subtotal > 50000) ? 0 : 2500;
 $total = $subtotal + $costoEnvio;
 ?>
 <!DOCTYPE html>
@@ -77,7 +77,7 @@ $total = $subtotal + $costoEnvio;
         <h3><?= htmlspecialchars($producto['Nombre']) ?></h3>
         <p class="fide1-carrito-item-color">Color: <?= htmlspecialchars($producto['Color']) ?></p>
         <div class="fide1-carrito-item-price">
-            <span>$<?= number_format($producto['Precio'], 0, ',', '.') ?></span>
+            <span>₡<?= number_format($producto['Precio'], 3, ',', '.') ?></span>
         </div>
         <div class="fide1-carrito-item-quantity">
             <label>Cantidad:</label>
@@ -104,15 +104,15 @@ $total = $subtotal + $costoEnvio;
                         <h3>Resumen de la Orden</h3>
                         <div class="fide1-summary-row">
                             <span>Subtotal:</span>
-                            <span>$<?= number_format($subtotal, 0, ',', '.') ?></span>
+                            <span>₡<?= number_format($subtotal, 3, ',', '.') ?></span>
                         </div>
                         <div class="fide1-summary-row">
                             <span>Envío:</span>
-                            <span>$<?= number_format($costoEnvio, 0, ',', '.') ?></span>
+                            <span>₡<?= number_format($costoEnvio, 3, ',', '.') ?></span>
                         </div>
                         <div class="fide1-summary-total">
                             <span>Total:</span>
-                            <span>$<?= number_format($total, 0, ',', '.') ?></span>
+                            <span>₡<?= number_format($total, 3, ',', '.') ?></span>
                         </div>
                         <button class="fide1-btn-checkout">Proceder al pago</button>
                     </div>
@@ -167,7 +167,6 @@ $total = $subtotal + $costoEnvio;
     <?php PrintScript(); ?>
     
     <script>
-    // Script inline para inicializar el contador del carrito
     $(document).ready(function() {
         const carrito_count = <?= json_encode($_SESSION['carrito_count'] ?? 0) ?>;
         if (carrito_count > 0) {

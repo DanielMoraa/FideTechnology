@@ -67,7 +67,7 @@
                                             echo "<tr>";
                                             echo "<td>" . $row["IdProducto"] . "</td>";
                                             echo "<td>" . $row["NombreProducto"] . "</td>";
-                                            echo "<td class='fide-price'>$ " . number_format($row["Precio"], 2) . "</td>";
+                                            echo "<td class='fide-price'>₡ " . number_format($row["Precio"], 3) . "</td>";
                                             
                                             $statusClass = $row["Disponibilidad"] == 1 ? "fide-status-available" : "fide-status-unavailable";
                                             $statusText = $row["Disponibilidad"] == 1 ? "En stock" : "Agotado";
