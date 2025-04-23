@@ -26,7 +26,7 @@
         require 'PHPMailer/src/SMTP.php';
     
         $correoSalida = "xxxxxx";
-        $contrasennaSalida = "xxxxxxx";
+        $contrasennaSalida = "xxxxxxxxx";
     
         $mail = new PHPMailer();
         $mail->CharSet = 'UTF-8';

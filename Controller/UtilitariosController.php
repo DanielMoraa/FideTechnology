@@ -5,7 +5,7 @@
         require 'PHPMailer/src/PHPMailer.php';
         require 'PHPMailer/src/SMTP.php';
 
-        $correoSalida = "fchacon20461@ufide.ac.cr";
+        $correoSalida = "xxxxxxxxxxxx";
         $contrasennaSalida = "xxxxxxxxxx"; 
 
         $mail = new PHPMailer();
