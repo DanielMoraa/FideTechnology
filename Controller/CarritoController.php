@@ -124,7 +124,7 @@ function EliminarDelCarrito($idUsuario, $idProducto, $color) {
             }
         }
         
-        $costoEnvio = ($subtotal > 50.000) ? 0 : 25.000;
+        $costoEnvio = ($subtotal > 50) ? 0 : 2;
         $total = $subtotal + $costoEnvio;
         
         $resultado['subtotal'] = $subtotal;
@@ -195,7 +195,7 @@ function ProcesarActualizarCantidad() {
                 $subtotal += $producto['Precio'] * $producto['Cantidad'];
             }
             
-            $costoEnvio = ($subtotal > 50.000) ? 0 : 25.000;
+            $costoEnvio = ($subtotal > 50) ? 0 : 2;
             $total = $subtotal + $costoEnvio;
             
             return [

@@ -44,7 +44,7 @@ if (!empty($productosCarrito)) {
     }
 }
 
-$costoEnvio = ($subtotal > 50000) ? 0 : 2500;
+$costoEnvio = ($subtotal > 50) ? 0 : 2;
 $total = $subtotal + $costoEnvio;
 ?>
 <!DOCTYPE html>
@@ -124,7 +124,7 @@ $total = $subtotal + $costoEnvio;
                             </div>
                             <div class="fide1-beneficio-text">
                                 <h4>Envío gratis</h4>
-                                <p>En compras superiores a $20.000</p>
+                                <p>En compras superiores a ₡50.000</p>
                             </div>
                         </div>
                         <div class="fide1-beneficio">

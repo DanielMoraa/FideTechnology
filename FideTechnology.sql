@@ -36,7 +36,7 @@ CREATE TABLE `carrito` (
   KEY `IdProducto` (`IdProducto`),
   CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`Id`),
   CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `carrito` (
 
 LOCK TABLES `carrito` WRITE;
 /*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
-INSERT INTO `carrito` VALUES (6,1,1,'Rojo',1,'2025-04-21 07:50:01'),(12,2,1,'Rojo',4,'2025-04-23 03:18:14');
+INSERT INTO `carrito` VALUES (12,2,1,'Rojo',4,'2025-04-23 03:18:14'),(15,1,9,'Negro',1,'2025-04-23 07:24:36');
 /*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `producto_colores` (
   PRIMARY KEY (`Id`),
   KEY `IdProducto` (`IdProducto`),
   CONSTRAINT `producto_colores_ibfk_1` FOREIGN KEY (`IdProducto`) REFERENCES `productos` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `producto_colores` (
 
 LOCK TABLES `producto_colores` WRITE;
 /*!40000 ALTER TABLE `producto_colores` DISABLE KEYS */;
-INSERT INTO `producto_colores` VALUES (1,1,'Rojo','../assets/img/img_subidas/s22red.png'),(2,1,'Verde','../assets/img/img_subidas/s22green.png'),(3,1,'Negro','../assets/img/img_subidas/s22black.png'),(4,2,'Negro','../assets/img/img_subidas/iphone13black.png'),(5,8,'Blanco','../assets/img/img_subidas/promax16blanco.png'),(6,7,'Gris','../assets/img/img_subidas/SamsungA7Gris.png'),(7,7,'Negro','../assets/img/img_subidas/SamsungA7Negra.png'),(8,6,'Dorado','../assets/img/img_subidas/flip3dorado.png'),(9,6,'Lavanda','../assets/img/img_subidas/flip3lavanda.jpeg'),(10,5,'Negro','../assets/img/img_subidas/plusNegro.png'),(11,5,'Rosado','../assets/img/img_subidas/plusRosado.png'),(12,3,'Celeste','../assets/img/img_subidas/mi11celeste.png');
+INSERT INTO `producto_colores` VALUES (1,1,'Rojo','../assets/img/img_subidas/s22red.png'),(2,1,'Verde','../assets/img/img_subidas/s22green.png'),(3,1,'Negro','../assets/img/img_subidas/s22black.png'),(4,2,'Negro','../assets/img/img_subidas/iphone13black.png'),(5,8,'Blanco','../assets/img/img_subidas/promax16blanco.png'),(6,7,'Gris','../assets/img/img_subidas/SamsungA7Gris.png'),(7,7,'Negro','../assets/img/img_subidas/SamsungA7Negra.png'),(8,6,'Dorado','../assets/img/img_subidas/flip3dorado.png'),(9,6,'Lavanda','../assets/img/img_subidas/flip3lavanda.jpeg'),(10,5,'Negro','../assets/img/img_subidas/plusNegro.png'),(11,5,'Rosado','../assets/img/img_subidas/plusRosado.png'),(12,3,'Celeste','../assets/img/img_subidas/mi11celeste.png'),(13,9,'Negro','../assets/img/img_subidas/redmi-buds-3-lite-black.png');
 /*!40000 ALTER TABLE `producto_colores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1060,4 +1060,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-23  7:08:51
+-- Dump completed on 2025-04-23  7:26:23
